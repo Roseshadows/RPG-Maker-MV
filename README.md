@@ -4,9 +4,7 @@
 - 🌱 I’m currently learning JavaScript to implement more interesting functions. And now I'm just a noob.
 - 💞️ All of my plugins are free to use commercially and non-commercially, as long as you give credit to me, Roseshadows.(As if someone would use them! lol)
 - 📫 You can reach me at Rose_shadows@163.com if you have anything that you want to tell me, though I may not write back to you until a period of time later.
-
-
-
+- Here are my Lists as follows: 
 - Files List: (used for tracing JSON/HTML/other files on their usage)
 - (None so far)
 
