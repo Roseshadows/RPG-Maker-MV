@@ -2,7 +2,7 @@
 - Sorry for my odd English grammers and expressions as I'm not a native English speaker.
 - 👀 I’m making efforts on creating my own game. The game engine is RPG Maker MV.
 - 🌱 I’m currently learning JavaScript to implement more interesting functions. And now I'm just a noob.
-- 💞️ All of my plugins are free to use commercially and non-commercially, as long as you give credit to me, Roseshadows.(As if someone would use them! lol)
+- 💞️ All of my plugins are free to use for both commercial and non-commercial projects, as long as you give credit to me, Roseshadows.(As if someone would use them! lol)
 - 📫 You can reach me at Rose_shadows@163.com if you have anything that you want to tell me, though I may not write back to you until a period of time later.
 
 <!---
