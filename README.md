@@ -6,13 +6,13 @@
 - 📫 You can reach me at Rose_shadows@163.com if you have anything that you want to tell me, though I may not write back to you until a period of time later.
 
 - Files List: (used for tracing JSON/HTML/other files on their usage)
-- (None so far)
+  (None so far)
 
 - Plugin List: (used for tracing plugins on their functions)
-- 1. RSSD_RandomItems.js - My first plugin!(although It's semi-finished up till now) Used for getting random items, weapons, armors or even skills. It is a large system including a variety of functions.
+- 1.RSSD_RandomItems.js - My first plugin!(although It's semi-finished up till now) Used for getting random items, weapons, armors or even skills. It is a large system including a variety of functions.
 
 - Codes List: (used for tracing codes on their functions)
-- (None so far)
+  (None so far)
 
 <!---
 Roseshadows/Roseshadows is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
