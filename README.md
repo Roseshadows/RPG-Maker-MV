@@ -1,4 +1,4 @@
-- 👋 Hi, I’m @Roseshadows . Here is the main storage.
+- 👋 Hi, I’m @Roseshadows . Here is the main storage used for store some important JSON or HTML files.
 - Sorry for my odd English grammers and expressions as I'm not an English speaker.
 - 👀 I’m making efforts on creating my own game. The game engine is RPG Maker MV.
 - 🌱 I’m currently learning JavaScript to implement more interesting functions. And now I'm just a noob.
