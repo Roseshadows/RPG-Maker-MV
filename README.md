@@ -11,7 +11,6 @@
 - **RSSD_RandomItems.js** 获取随机物品/武器/防具甚至技能。是一个（对于我来说）庞大的系统。
 ### :notebook:代码列表：
 - （暂无）
-<hr>
 # :sparkles: Hello!
 - 👋 Welcome to @Roseshadows little house. 
 - Sorry for my odd English grammers and expressions as I'm not an English speaker.
