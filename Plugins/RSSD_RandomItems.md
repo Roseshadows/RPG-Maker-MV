@@ -1,6 +1,6 @@
 # RSSD_RandomItems.js 使用指南/Guidebooks
 - **只是搭了个框架。里面暂时什么都没有。**
-- **There's only a frame, with nothing useful inside.**<br>
+- **There's only a frame, with nothing useful inside currently.**<br>
 - [目录](#目录)
 - [Directory](#Directory)
 ## 目录
