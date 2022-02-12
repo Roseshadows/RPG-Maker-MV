@@ -17,10 +17,10 @@
 ### 控制字符
 ### 使用方法：设置事件
 ### 使用条款
-### 更新日志
+### 更新日志<br>
 ## Directory
   - [Introduction](#Introduction)
-  - [Plugin Commands](#Plugin Commands)
+  - [Plugin Commands](#Plugin-Commands)
   - [Script Calls](#Script Calls)
   - [Escape Codes](#Escape Codes)
   - [Event Settings](#Event Settings)
