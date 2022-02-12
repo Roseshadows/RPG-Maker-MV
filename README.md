@@ -1,4 +1,10 @@
-- 👋 Hi, I’m @Roseshadows . 
+- 👋 欢迎来到离影玫的小屋。
+- 👀 我最近正在用RPG Maker MV为我自己制作一个游戏。不知道能不能坚持下来...
+- 🌱 为了在我的游戏中实现一些有趣的功能，我正在努力钻研JavaScript，虽然现在才刚起步...(属于是一点代码的基础都没有，全部都得慢慢浸润)
+- 💞️ 有个分支里存放着一些（可能就几个）我自己写的很菜很冗长的插件和意义不明的代码。随便去用就好，署不署名随意。（好家伙，说得好像真的有人愿意用似的）
+- 📫 呃，如果有人想跟我聊个天或是说些事儿，可以发邮件到Rose_shadows@163.com（不过我可能没法在短时间内回信）
+- ===========================================
+- 👋 Hi, I’m @Roseshadows.
 - Sorry for my odd English grammers and expressions as I'm not a native English speaker.
 - 👀 I’m making efforts on creating my own game. The game engine is RPG Maker MV.
 - 🌱 I’m currently learning JavaScript to implement more interesting functions. And now I'm just a noob.
