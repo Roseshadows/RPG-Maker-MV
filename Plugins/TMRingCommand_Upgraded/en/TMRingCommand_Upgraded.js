@@ -21,15 +21,16 @@
  * 5. Params, including Enabled/Disabled Icon Opacity, Caption Opacity, Caption 
  * Text Opacity and Caption Color, have been added.
  * 
- * 
  * ---------------------------------------------------------------------------
  * == Introduction ==
+ *
  * Hold Ctrl to push a ring menu from which player s can call Item Scene, Skill 
  * Scene and so on, or even Common Events. You can also hide specific scenes 
  * from the menu using switches during the game.
  * 
  * ---------------------------------------------------------------------------
  * == Instructions ==
+ *
  * Despite that you just installed the plugin and have modified nothing, the 
  * plugin can still work.
  * If you want to set more advanced settings, call Common Events or push Scenes
