@@ -1,5 +1,3 @@
-- [中文](#你好呀！)
-- [English](#Hello!)  
 # :sparkles: 你好呀！
 - 👋 欢迎来到离影玫的小屋。
 - 👀 我最近正在用*RPG Maker MV*为我自己制作一个游戏。不知道能不能坚持下来...:new_moon_with_face:
