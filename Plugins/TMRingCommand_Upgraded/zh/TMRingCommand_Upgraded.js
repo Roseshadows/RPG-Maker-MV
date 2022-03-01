@@ -1498,3 +1498,183 @@ Imported.TMRingCommand = true;
     }
   };
 
+  Sprite_TMRingCommand.prototype.refresh = function() {
+    for (var i = 0; i < this._commandSprites.length; i++) {
+      var sprite = this._commandSprites[i];
+      var index = (this._commandIndex - i) % this._commandSprites.length;
+      sprite.setIndex(index);
+    }
+  };
+  
+  //-----------------------------------------------------------------------------
+  // Spriteset_Map
+  //
+  
+  var _Spriteset_Map_createLowerLayer = Spriteset_Map.prototype.createLowerLayer;
+  Spriteset_Map.prototype.createLowerLayer = function() {
+    _Spriteset_Map_createLowerLayer.call(this);
+    this.createRingCommand();
+  };
+
+  Spriteset_Map.prototype.createRingCommand = function() {
+    this._ringCommand = new Sprite_TMRingCommand();
+    this.addChild(this._ringCommand);
+  };
+  
+  //-----------------------------------------------------------------------------
+  // Window_MenuActor
+  //
+  
+  var _Window_MenuActor_refresh = Window_MenuActor.prototype.refresh;
+  Window_MenuActor.prototype.refresh = function() {
+    if (!$gameTemp.calledByRingCommand()) {
+      _Window_MenuActor_refresh.call(this);
+    }
+  };
+  
+  //-----------------------------------------------------------------------------
+  // Window_SkillStatus
+  //
+  
+  var _Window_SkillStatus_refresh = Window_SkillStatus.prototype.refresh;
+  Window_SkillStatus.prototype.refresh = function() {
+    if (!$gameTemp.calledByRingCommand()) {
+      _Window_SkillStatus_refresh.call(this);
+    }
+  };
+  
+  //-----------------------------------------------------------------------------
+  // Window_Status
+  //
+  
+  var _Window_Status_refresh = Window_Status.prototype.refresh;
+  Window_Status.prototype.refresh = function() {
+    if (!$gameTemp.calledByRingCommand()) {
+      _Window_Status_refresh.call(this);
+    }
+  };
+  
+  //-----------------------------------------------------------------------------
+  // Window_Message
+  //
+  
+  var _Window_Message_updatePlacement = Window_Message.prototype.updatePlacement;
+  Window_Message.prototype.updatePlacement = function() {
+    _Window_Message_updatePlacement.call(this);
+    this._goldWindow.x = Graphics.boxWidth - this._goldWindow.width;
+  };
+
+  //-----------------------------------------------------------------------------
+  // Scene_Item
+  //
+  
+  var _Scene_Item_start = Scene_Item.prototype.start;
+  Scene_Item.prototype.start = function() {
+    _Scene_Item_start.call(this);
+    if ($gameTemp.calledByRingCommand()) {
+      $gameTemp.setCalledByRingCommand(false);
+      this._actorWindow.refresh();
+    }
+  }
+  
+  //-----------------------------------------------------------------------------
+  // Scene_Skill
+  //
+  
+  var _Scene_Skill_start = Scene_Skill.prototype.start;
+  Scene_Skill.prototype.start = function() {
+    _Scene_Skill_start.call(this);
+    if ($gameTemp.calledByRingCommand()) {
+      $gameTemp.setCalledByRingCommand(false);
+      this._actorWindow.refresh();
+      this._statusWindow.refresh();
+    }
+  }
+  
+  //-----------------------------------------------------------------------------
+  // Scene_Status
+  //
+  
+  var _Scene_Status_start = Scene_Status.prototype.start;
+  Scene_Status.prototype.start = function() {
+    _Scene_Status_start.call(this);
+    if ($gameTemp.calledByRingCommand()) {
+      $gameTemp.setCalledByRingCommand(false);
+      this._statusWindow.refresh();
+    }
+  }
+  
+  //-----------------------------------------------------------------------------
+  // Scene_Map
+  //
+  
+  var _Scene_Map_callMenu = Scene_Map.prototype.callMenu;
+  Scene_Map.prototype.callMenu = function() {
+    if (useEscape) {
+      $gameTemp.setRingCommandVisible(true);
+      this.menuCalling = false;
+    } else {
+      _Scene_Map_callMenu.call(this);
+    }
+  };
+
+  //-----------------------------------------------------------------------------
+  // Scene_RCFormation
+  //
+
+  function Scene_RCFormation() {
+    this.initialize.apply(this, arguments);
+  }
+
+  Scene_RCFormation.prototype = Object.create(Scene_MenuBase.prototype);
+  Scene_RCFormation.prototype.constructor = Scene_RCFormation;
+
+  Scene_RCFormation.prototype.initialize = function() {
+    Scene_MenuBase.prototype.initialize.call(this);
+  };
+
+  Scene_RCFormation.prototype.create = function() {
+    Scene_MenuBase.prototype.create.call(this);
+    this.createStatusWindow();
+  };
+
+  Scene_RCFormation.prototype.start = function() {
+    Scene_MenuBase.prototype.start.call(this);
+    this._statusWindow.refresh();
+    this._statusWindow.setFormationMode(true);
+    this._statusWindow.selectLast();
+    this._statusWindow.activate();
+    this._statusWindow.setHandler('ok',     this.onFormationOk.bind(this));
+    this._statusWindow.setHandler('cancel', this.onFormationCancel.bind(this));
+  };
+
+  Scene_RCFormation.prototype.createStatusWindow = function() {
+    this._statusWindow = new Window_MenuStatus(0, 0);
+    this._statusWindow.x = (Graphics.boxWidth - this._statusWindow.width) / 2;
+    this.addWindow(this._statusWindow);
+  };
+
+  Scene_RCFormation.prototype.onFormationOk = function() {
+    var index = this._statusWindow.index();
+    var actor = $gameParty.members()[index];
+    var pendingIndex = this._statusWindow.pendingIndex();
+    if (pendingIndex >= 0) {
+      $gameParty.swapOrder(index, pendingIndex);
+      this._statusWindow.setPendingIndex(-1);
+      this._statusWindow.redrawItem(index);
+    } else {
+      this._statusWindow.setPendingIndex(index);
+    }
+    this._statusWindow.activate();
+  };
+
+  
+Scene_RCFormation.prototype.onFormationCancel = function() {
+    if (this._statusWindow.pendingIndex() >= 0) {
+      this._statusWindow.setPendingIndex(-1);
+      this._statusWindow.activate();
+    } else {
+      this.popScene();
+    }
+  };
+})();
