@@ -29,7 +29,7 @@
 |Name|Functions|
 |:----:|:-----|
 |**RSSD_RandomItems.js**|My first plugin! (although It's semi-finished up till now) Used for getting random items, weapons, armors or even skills. It is a large system including a variety of functions.|
-|**TMRingCommand_Upgraded.js**|I modified tomoaky's TMRingCommand.js, which was released under MIT license, to make it meet my needs. In this upgraded plugin, not only can you use switches to control when to hide / show commands respectively, but up to 10 common events can also be added to the ring menu as commands. Besides you are now able to customize the object (player/screen) which the ring menu is bound to. More settings are also added to the param list.|
+|**TMRingCommand_Upgraded.js**|I modified tomoaky's TMRingCommand.js, which was released under MIT license, to make it meet my needs. In this upgraded plugin, not only can you use switches to control when to hide / show commands respectively, but up to 10 common events can also be added to the ring menu as commands. Besides you are now able to customize the object (player/screen) which the ring menu is bound to. More settings are added to the param list as well.|
 
 ### :notebook:Codes List: (used for tracing codes on their functions)
 - (None so far)
