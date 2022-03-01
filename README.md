@@ -14,6 +14,7 @@
 |**TMRingCommand_Upgraded.js**|在tomoaky的TMRingCommand.js插件的基础上修改的新一版的插件。原来的插件具有局限性，指令是固定的。但在修改版的插件中，可以用开关来控制各个指令的显示与隐藏；可以添加最多十个公共事件到轮盘中；轮盘不仅仅只能绑定到玩家身上，还可以绑定在屏幕上；在外观设置这一栏里添加了一些更细节的设置，等等。|
 ### :notebook:代码列表：
 - （暂无）
+* * *
 # :sparkles: Hello!
 - 👋 Welcome to @Roseshadows little house. 
 - Sorry for my odd English grammers and expressions as I'm not a native English speaker.
