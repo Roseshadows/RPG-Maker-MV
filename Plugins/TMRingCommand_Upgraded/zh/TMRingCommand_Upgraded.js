@@ -751,3 +751,98 @@
  * @desc 若该开关为ON，该指令就会隐藏。0或空意思是该指令会永远显示。
  * @default 0
  */
+/**
+ * Modification Note:
+ *   None.
+ */
+
+var Imported = Imported || {};
+Imported.TMRingCommand = true;
+
+(function(){
+
+    // parameters
+
+    var parameters = PluginManager.parameters('TMRingCommand_Upgraded');
+    var direction      = Number(parameters['Direction']);
+    var useEscape      = String(parameters['Use Escape']) === 'true';
+    var useCaption     = String(parameters['Use Caption']) === 'true';
+    var boundToScreen  = String(parameters['Bound To Screen']) === 'true';
+    var screenX        = isNaN(Number(parameters['Screen X'])) ? eval(parameters['Screen X']) : Number(parameters['Screen X']);
+    var screenY        = isNaN(Number(parameters['Screen Y'])) ? eval(parameters['Screen Y']) : Number(parameters['Screen Y']);
+    var saveLastIndex  = String(parameters['Save Last Index']) === 'true';
+    var openResetIndex = String(parameters['Reset Index when Opens']) === 'true';
+    var openGoldWindow = String(parameters['Open Gold Window']) === 'true';
+    var goldWindowX    = isNaN(Number(parameters['Gold Window X'])) ? eval(parameters['Gold Window X']) : Number(parameters['Gold Window X']);
+    var goldWindowY    = isNaN(Number(parameters['Gold Window Y'])) ? eval(parameters['Gold Window Y']) : Number(parameters['Gold Window Y']);
+    var seOpenCommand  = {
+        name :   String(JSON.parse(parameters['Open Command SE'])['name']),
+        volume : Number(JSON.parse(parameters['Open Command SE'])['volume']),
+        pitch :  Number(JSON.parse(parameters['Open Command SE'])['pitch']),
+        pan :    Number(JSON.parse(parameters['Open Command SE'])['pan'])
+    };
+    var seCloseCommand = {
+        name :   String(JSON.parse(parameters['Close Command SE'])['name']),
+        volume : Number(JSON.parse(parameters['Close Command SE'])['volume']),
+        pitch :  Number(JSON.parse(parameters['Close Command SE'])['pitch']),
+        pan :    Number(JSON.parse(parameters['Close Command SE'])['pan'])
+    };
+    
+    var ce1ON,ce2ON,ce3ON,ce4ON,ce5ON,ce6ON,ce7ON,ce8ON,ce9ON,ce10ON,mailON,goldLevelUpON;
+    var ce1 = parameters['CommonEvent 1 Command'] ? (function(){ce1ON = true; return JSON.parse(parameters['CommonEvent 1 Command'])})() : {};
+    var ce2 = parameters['CommonEvent 2 Command'] ? (function(){ce2ON = true; return JSON.parse(parameters['CommonEvent 2 Command'])})() : {};
+    var ce3 = parameters['CommonEvent 3 Command'] ? (function(){ce3ON = true; return JSON.parse(parameters['CommonEvent 3 Command'])})() : {};
+    var ce4 = parameters['CommonEvent 4 Command'] ? (function(){ce4ON = true; return JSON.parse(parameters['CommonEvent 4 Command'])})() : {};
+    var ce5 = parameters['CommonEvent 5 Command'] ? (function(){ce5ON = true; return JSON.parse(parameters['CommonEvent 5 Command'])})() : {};
+    var ce6 = parameters['CommonEvent 6 Command'] ? (function(){ce6ON = true; return JSON.parse(parameters['CommonEvent 6 Command'])})() : {};
+    var ce7 = parameters['CommonEvent 7 Command'] ? (function(){ce7ON = true; return JSON.parse(parameters['CommonEvent 7 Command'])})() : {};
+    var ce8 = parameters['CommonEvent 8 Command'] ? (function(){ce8ON = true; return JSON.parse(parameters['CommonEvent 8 Command'])})() : {};
+    var ce9 = parameters['CommonEvent 9 Command'] ? (function(){ce9ON = true; return JSON.parse(parameters['CommonEvent 9 Command'])})() : {};
+    var ce10 = parameters['CommonEvent 10 Command'] ? (function(){ce10ON = true; return JSON.parse(parameters['CommonEvent 10 Command'])})() : {};
+    var mail = parameters['JK_Mail Command'] ? (function(){mailON = true; return JSON.parse(parameters['JK_Mail Command'])})() : {};
+    var goldLevelUp = parameters['GoldLevelUp Command'] ? (function(){goldLevelUpON = true; return JSON.parse(parameters['GoldLevelUp Command'])})() : {};
+
+    var commandIcon = {};
+    commandIcon['item']        = Number(JSON.parse(parameters['Item Command'])['Icon Index']);
+    commandIcon['skill']       = Number(JSON.parse(parameters['Skill Command'])['Icon Index']);
+    commandIcon['equip']       = Number(JSON.parse(parameters['Equip Command'])['Icon Index']);
+    commandIcon['status']      = Number(JSON.parse(parameters['Status Command'])['Icon Index']);
+    commandIcon['formation']   = Number(JSON.parse(parameters['Formation Command'])['Icon Index']);
+    commandIcon['options']     = Number(JSON.parse(parameters['Options Command'])['Icon Index']);
+    commandIcon['save']        = Number(JSON.parse(parameters['Save Command'])['Icon Index']);
+    commandIcon['load']        = Number(JSON.parse(parameters['Load Command'])['Icon Index']);   // 增加了这里的参数
+    commandIcon['gameEnd']     = Number(JSON.parse(parameters['GameEnd Command'])['Icon Index']);
+    commandIcon['goldLevelUp'] = Number(goldLevelUp['Icon Index']);
+    commandIcon['mail']        = Number(mail['Icon Index']);   // 增加了JK_MailSystem.js
+    commandIcon['ce1']         = Number(ce1['Icon Index']);
+    commandIcon['ce2']         = Number(ce2['Icon Index']);
+    commandIcon['ce3']         = Number(ce3['Icon Index']);
+    commandIcon['ce4']         = Number(ce4['Icon Index']);
+    commandIcon['ce5']         = Number(ce5['Icon Index']);
+    commandIcon['ce6']         = Number(ce6['Icon Index']);
+    commandIcon['ce7']         = Number(ce7['Icon Index']);
+    commandIcon['ce8']         = Number(ce8['Icon Index']);
+    commandIcon['ce9']         = Number(ce9['Icon Index']);
+    commandIcon['ce10']        = Number(ce10['Icon Index']);
+
+    var itemSwi        = JSON.parse(parameters['Item Command'])['Close Switch'] ? JSON.parse(parameters['Item Command'])['Close Switch'] : 0;
+    var skillSwi       = JSON.parse(parameters['Skill Command'])['Close Switch'] ? JSON.parse(parameters['Skill Command'])['Close Switch'] : 0;
+    var equipSwi       = JSON.parse(parameters['Equip Command'])['Close Switch'] ? JSON.parse(parameters['Equip Command'])['Close Switch'] : 0;
+    var statusSwi      = JSON.parse(parameters['Status Command'])['Close Switch'] ? JSON.parse(parameters['Status Command'])['Close Switch'] : 0;
+    var formationSwi   = JSON.parse(parameters['Formation Command'])['Close Switch'] ? JSON.parse(parameters['Formation Command'])['Close Switch'] : 0;
+    var optionsSwi     = JSON.parse(parameters['Options Command'])['Close Switch'] ? JSON.parse(parameters['Options Command'])['Close Switch'] : 0;
+    var saveSwi        = JSON.parse(parameters['Save Command'])['Close Switch'] ? JSON.parse(parameters['Save Command'])['Close Switch'] : 0;
+    var loadSwi        = JSON.parse(parameters['Load Command'])['Close Switch'] ? JSON.parse(parameters['Load Command'])['Close Switch'] : 0;
+    var gameEndSwi     = JSON.parse(parameters['GameEnd Command'])['Close Switch'] ? JSON.parse(parameters['GameEnd Command'])['Close Switch'] : 0;
+    var goldLevelUpSwi = goldLevelUp['Close Switch'] ? goldLevelUp['Close Switch'] : 0;
+    var mailSwi        = mail['Close Switch'] ? mail['Close Switch'] : 0;
+    var ce1Swi         = ce1['Close Switch'] ? ce1['Close Switch'] : 0;
+    var ce2Swi         = ce2['Close Switch'] ? ce2['Close Switch'] : 0;
+    var ce3Swi         = ce3['Close Switch'] ? ce3['Close Switch'] : 0;
+    var ce4Swi         = ce4['Close Switch'] ? ce4['Close Switch'] : 0; 
+    var ce5Swi         = ce5['Close Switch'] ? ce5['Close Switch'] : 0; 
+    var ce6Swi         = ce6['Close Switch'] ? ce6['Close Switch'] : 0; 
+    var ce7Swi         = ce7['Close Switch'] ? ce7['Close Switch'] : 0; 
+    var ce8Swi         = ce8['Close Switch'] ? ce8['Close Switch'] : 0; 
+    var ce9Swi         = ce9['Close Switch'] ? ce9['Close Switch'] : 0; 
+    var ce10Swi        = ce10['Close Switch'] ? ce10['Close Switch'] : 0; 
