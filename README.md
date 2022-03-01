@@ -9,7 +9,7 @@
 - （暂无）
 ### :notebook:插件列表：
     |插件名|插件功能|
-    |:-:|-:|
+    |:----:|:----|
     |**RSSD_RandomItems.js**||
     |**TMRingCommand_Upgraded.js**||
 - **RSSD_RandomItems.js** 获取随机物品/武器/防具甚至技能。是一个（对于我来说）庞大的系统。
