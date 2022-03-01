@@ -10,6 +10,7 @@
  * @help
  * ---------------------------------------------------------------------------
  * == What's new (Modification & Addition Parts) ==
+ *
  * 1. Originally the direction of ring menu is fixed. but now you can set the direction
  * to "up" or "down"(default).
  * 2. Originally the ring menu is bound to the player, but now you can bind it to
