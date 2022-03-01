@@ -43,7 +43,7 @@
  * 
  * <= About Close Switches =>
  * You may find that even though the corresponding switch has been turned ON/OFF, 
- * the arrangement of ring menu will not be changed until players goes to another 
+ * the arrangement of ring menu will not be changed until players go to another 
  * map or a scene is called out. As a beginner, I cannot deal with this issue
  * currently. But you can manually add a script call right after setting the 
  * switch's value:
@@ -51,8 +51,8 @@
  * 
  * <= About Parameters Commands =>
  * Please DONOT delete the settings of Commands parameters which are RPG Maker
- * MV default commands including Item, Skills, Equip, Status, Formation, Save, 
- * Load, GameEnd in the parameter list.
+ * MV's default commands including Item, Skills, Equip, Status, Formation, Save, 
+ * Load and GameEnd in the parameter list.
  * If you don't want some of them to appear in the ring menu, you can set their
  * "Close Switch" param to the same switch that can be turned on at the start of
  * the game.
