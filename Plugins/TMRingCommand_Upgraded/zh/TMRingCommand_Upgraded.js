@@ -846,3 +846,655 @@ Imported.TMRingCommand = true;
     var ce8Swi         = ce8['Close Switch'] ? ce8['Close Switch'] : 0; 
     var ce9Swi         = ce9['Close Switch'] ? ce9['Close Switch'] : 0; 
     var ce10Swi        = ce10['Close Switch'] ? ce10['Close Switch'] : 0; 
+
+    var mailCEId = Number(mail['Common Event']);
+    var ce1CEId  = Number(ce1['Common Event']);
+    var ce2CEId  = Number(ce2['Common Event']);
+    var ce3CEId  = Number(ce3['Common Event']);
+    var ce4CEId  = Number(ce4['Common Event']);
+    var ce5CEId  = Number(ce5['Common Event']);
+    var ce6CEId  = Number(ce6['Common Event']);
+    var ce7CEId  = Number(ce7['Common Event']);
+    var ce8CEId  = Number(ce8['Common Event']);
+    var ce9CEId  = Number(ce9['Common Event']);
+    var ce10CEId = Number(ce10['Common Event']);
+
+    var loadName = String(JSON.parse(parameters['Load Command'])['Name']);
+    var mailName = String(mail['Name']);
+    var ce1Name  = String(ce1['Name']);
+    var ce2Name  = String(ce2['Name']);
+    var ce3Name  = String(ce3['Name']);
+    var ce4Name  = String(ce4['Name']);
+    var ce5Name  = String(ce5['Name']);
+    var ce6Name  = String(ce6['Name']);
+    var ce7Name  = String(ce7['Name']);
+    var ce8Name  = String(ce8['Name']);
+    var ce9Name  = String(ce9['Name']);
+    var ce10Name = String(ce10['Name']);
+    
+    var iconOpacity          = Number(parameters['Enabled Icon Opacity']);
+    var iconOpacityD         = Number(parameters['Disabled Icon Opacity']);
+    var rotateDuration       = Number(parameters['Rotate Duration']);
+    var iconDistX            = Number(parameters['Icon Dist X']);
+    var iconDistY            = Number(parameters['Icon Dist Y']);
+    var iconSelectScale      = Number(parameters['Selected Icon Scale']);
+    var captionColor         = String(parameters['Caption Color']);
+    var captionOpacity       = Number(parameters['Caption Opacity']);
+    var captionTextOpacity   = Number(parameters['Caption Text Opacity']);
+    var captionWidth         = Number(parameters['Caption Width']);
+    var captionHeight        = Number(parameters['Caption Height']);
+    var captionShiftX        = Number(parameters['Caption Shift X']);
+    var captionShiftY        = Number(parameters['Caption Shift Y']);
+    var radiusMax            = 4;  // 如果这不是定值的话貌似会有问题
+
+    function checkSwi(s) {
+        if (s) {
+            return !$gameSwitches.value(s);
+        } else {
+            return true;
+        }
+    }
+
+
+
+
+    // Modified Script (belongs to tomoaky)
+
+  //-----------------------------------------------------------------------------
+  // Game_Temp
+  //
+  
+  Game_Temp.prototype.isRingCommandVisible = function() {
+    if (this._ringCommandVisible === undefined) {
+      this._ringCommandVisible = false;
+    }
+    return this._ringCommandVisible;
+  };
+  
+  Game_Temp.prototype.setRingCommandVisible = function(flag) {
+    this._ringCommandVisible = flag;
+  };
+  
+  Game_Temp.prototype.ringCommandLastIndex = function() {
+    if (this._ringCommandLastIndex === undefined) {
+      this._ringCommandLastIndex = 0;
+    }
+    return this._ringCommandLastIndex;
+  };
+  
+  Game_Temp.prototype.setRingCommandLastIndex = function(index) {
+    this._ringCommandLastIndex = index;
+  };
+  
+  Game_Temp.prototype.calledByRingCommand = function() {
+    if (this._calledByRingCommand === undefined) {
+      this._calledByRingCommand = false;
+    }
+    return this._calledByRingCommand;
+  };
+  
+  Game_Temp.prototype.setCalledByRingCommand = function(flag) {
+    this._calledByRingCommand = flag;
+  };
+  
+  //-----------------------------------------------------------------------------
+  // Game_Player
+  //
+  
+  var _Game_Player_canMove = Game_Player.prototype.canMove;
+  Game_Player.prototype.canMove = function() {
+    if ($gameTemp.isRingCommandVisible()) {
+      return false;
+    }
+    return _Game_Player_canMove.call(this);
+  };
+  
+  //-----------------------------------------------------------------------------
+  // Sprite_TMRingCommandIcon
+  //
+  
+  function Sprite_TMRingCommandIcon() {
+    this.initialize.apply(this, arguments);
+  }
+
+  Sprite_TMRingCommandIcon.prototype = Object.create(Sprite.prototype);
+  Sprite_TMRingCommandIcon.prototype.constructor = Sprite_TMRingCommandIcon;
+
+  Sprite_TMRingCommandIcon.prototype.initialize = function(name) {
+    Sprite.prototype.initialize.call(this);
+    this.anchor.x = 0.5;
+    this.anchor.y = 0.5;
+    this._commandName = name;
+    this.bitmap = ImageManager.loadSystem('IconSet');
+    var bx = commandIcon[name] % 16 * Window_Base._iconWidth;
+    var by = Math.floor(commandIcon[name] / 16) * Window_Base._iconHeight;
+    this.setFrame(bx, by, Window_Base._iconWidth, Window_Base._iconHeight);
+    this._targetPosAngle = 0;
+    this._posAngle = 0;
+  };
+  
+  Sprite_TMRingCommandIcon.prototype.setIndex = function(index) {
+    if (direction == 1) {
+      var modi = Math.PI;
+    } else if (direction == 2) {   //right(not used)
+      var modi = Math.PI/2*3;
+    } else if (direction == 3) {   //left(not used)
+      var modi = Math.PI/2;
+    } else {
+      var modi = 0;
+    }
+    this._targetPosAngle = Math.PI * 2 / this.parent._commandSprites.length * index + modi;
+    var r = this._targetPosAngle - this._posAngle;
+    r -= Math.floor(r / (Math.PI * 2)) * (Math.PI * 2);
+    if (r > Math.PI) {
+      r -= Math.PI * 2;
+    }
+    this._rotationCount = rotateDuration;
+    this._va = r / this._rotationCount;
+  };
+
+  Sprite_TMRingCommandIcon.prototype.name = function() {
+    return this._commandName;
+  };
+  
+  Sprite_TMRingCommandIcon.prototype.isEnabled = function() {
+    switch (this._commandName) {
+    case 'save':
+      return this.isSaveEnabled();
+    case 'options':
+      return this.isOptionsEnabled();
+    case 'load':   // 添加了这里，用于判断是否启用
+      return this.isLoadEnabled();
+    case 'mail':
+      return this.isMailEnabled();  // 增加了JK_MailSystem.js
+    case 'gameEnd':
+      return this.isGameEndEnabled();
+    default:
+      return this.areMainCommandsEnabled();
+    }
+  };
+  
+  Sprite_TMRingCommandIcon.prototype.areMainCommandsEnabled = function() {
+    return $gameParty.exists();
+  };
+
+  Sprite_TMRingCommandIcon.prototype.isFormationEnabled = function() {
+    return $gameParty.size() >= 2 && $gameSystem.isFormationEnabled();
+  };
+
+  Sprite_TMRingCommandIcon.prototype.isOptionsEnabled = function() {
+    return true;
+  };
+
+  Sprite_TMRingCommandIcon.prototype.isLoadEnabled = function() {   // 这里也要添加（虽然还未参透此处为何只需填写true即可）
+    return true;
+  };
+
+  Sprite_TMRingCommandIcon.prototype.isMailEnabled = function() {
+    return true;   // 增加了JK_MailSystem.js
+  }
+
+  Sprite_TMRingCommandIcon.prototype.isSaveEnabled = function() {
+    return !DataManager.isEventTest() && $gameSystem.isSaveEnabled();
+  };
+
+  Sprite_TMRingCommandIcon.prototype.isGameEndEnabled = function() {
+    return true;
+  };
+
+  Sprite_TMRingCommandIcon.prototype.update = function() {
+    Sprite.prototype.update.call(this);
+    if (this._rotationCount > 0) {
+      this._posAngle += this._va;
+      this._rotationCount--;
+      if (this._rotationCount === 0) {
+        this._posAngle = this._targetPosAngle;
+      }
+    }
+    var r = this._posAngle + Math.PI / 2;
+    this.x = Math.cos(r) * this.parent._commandRadius * iconDistX;
+    this.y = Math.sin(r) * this.parent._commandRadius * iconDistY - 24;
+    if (direction == 1) {
+      var modi = -((this.y + 56) / 256) + 0.75;
+    } else if (direction == 2) {
+      var modi = (this.y + 56) / 256 + 0.75;
+    } else if (direction == 3) {
+      var modi = -((this.y) / 256) + 0.75;
+    } else {
+      var modi = (this.y + 56) / 256 + 0.75;
+    }
+    var scale = modi;
+    if (this.parent.currentCommandName() === this.name()) {
+      scale *= iconSelectScale;
+    }
+    this.scale.set(scale, scale);
+    this.opacity = this.isEnabled() ? iconOpacity : iconOpacityD
+  };
+  
+  //-----------------------------------------------------------------------------
+  // Sprite_TMRingCommandCaption
+  //
+  
+  function Sprite_TMRingCommandCaption() {
+    this.initialize.apply(this, arguments);
+  }
+
+  Sprite_TMRingCommandCaption.prototype = Object.create(Sprite.prototype);
+  Sprite_TMRingCommandCaption.prototype.constructor = Sprite_TMRingCommandCaption;
+
+  Sprite_TMRingCommandCaption.prototype.initialize = function() {
+    Sprite.prototype.initialize.call(this);
+    this.anchor.x = 0.5;
+    this.anchor.y = 0.5;
+    this.x = captionShiftX;
+    this.y = captionShiftY;
+    this._commandName = '';
+    this.bitmap = new Bitmap(captionWidth, captionHeight);
+  };
+  
+  Sprite_TMRingCommandCaption.prototype.update = function() {
+    if (this._commandName !== this.parent.currentCommandName()) {
+      this._commandName = this.parent.currentCommandName();
+      this.refresh();
+    }
+  };
+
+  Sprite_TMRingCommandCaption.prototype.refresh = function() {
+    this.bitmap.clear();
+    this.bitmap.paintOpacity = captionOpacity;
+    this.bitmap.fillRect(0, 0, 240, 48, captionColor);
+    this.bitmap.paintOpacity = captionTextOpacity;
+    if (this._commandName == 'load') {   // 在这里添加了load，可以照猫画虎多写几个else if
+      this.bitmap.drawText(loadName, 0, 0, captionWidth, captionHeight, 'center');
+    }
+    if (this._commandName == 'mail' && Imported.JKMail && mailON) {
+      this.bitmap.drawText(mailName, 0, 0, captionWidth, captionHeight, 'center');   // 增加了JK_MailSystem.js
+    }
+    if (this._commandName == 'ce1' && ce1ON) {
+      this.bitmap.drawText(ce1Name, 0, 0, captionWidth, captionHeight, 'center');
+    }
+    if (this._commandName == 'ce2' && ce2ON) {
+      this.bitmap.drawText(ce2Name, 0, 0, captionWidth, captionHeight, 'center');
+    }
+    if (this._commandName == 'ce3' && ce3ON) {
+      this.bitmap.drawText(ce3Name, 0, 0, captionWidth, captionHeight, 'center');
+    }
+    if (this._commandName == 'ce4' && ce4ON) {
+      this.bitmap.drawText(ce4Name, 0, 0, captionWidth, captionHeight, 'center');
+    }
+    if (this._commandName == 'ce5' && ce5ON) {
+      this.bitmap.drawText(ce5Name, 0, 0, captionWidth, captionHeight, 'center');
+    }
+    if (this._commandName == 'ce6' && ce6ON) {
+      this.bitmap.drawText(ce6Name, 0, 0, captionWidth, captionHeight, 'center');
+    }
+    if (this._commandName == 'ce7' && ce7ON) {
+      this.bitmap.drawText(ce7Name, 0, 0, captionWidth, captionHeight, 'center');
+    }
+    if (this._commandName == 'ce8' && ce8ON) {
+      this.bitmap.drawText(ce8Name, 0, 0, captionWidth, captionHeight, 'center');
+    }
+    if (this._commandName == 'ce9' && ce9ON) {
+      this.bitmap.drawText(ce9Name, 0, 0, captionWidth, captionHeight, 'center');
+    }
+    if (this._commandName == 'ce10' && ce10ON) {
+      this.bitmap.drawText(ce10Name, 0, 0, captionWidth, captionHeight, 'center');
+    }
+      this.bitmap.drawText(TextManager[this._commandName], 0, 0, captionWidth, captionHeight, 'center');
+  };
+  
+  //-----------------------------------------------------------------------------
+  // Sprite_TMRingCommand
+  //
+  
+  function Sprite_TMRingCommand() {
+    this.initialize.apply(this, arguments);
+  }
+
+  Sprite_TMRingCommand.prototype = Object.create(Sprite.prototype);
+  Sprite_TMRingCommand.prototype.constructor = Sprite_TMRingCommand;
+
+  Sprite_TMRingCommand.prototype.initialize = function() {
+    Sprite.prototype.initialize.call(this);
+    this._commandIndex = saveLastIndex ? $gameTemp.ringCommandLastIndex() : 0;
+    this._commandRadius = 0;
+    this.makeCommandList();
+    this.makeCaption();
+    this.refresh();
+  };
+
+  Sprite_TMRingCommand.prototype.makeCommandList = function() {
+    this._commandSprites = []
+    this.addMainCommands();
+    this.addFormationCommand();
+    this.addOptionsCommand();
+    this.addOriginalCommand();   // 增加了JK_MailSystem.js
+    this.addCECommand();   // 自定义公共事件指令
+    this.addSaveCommand();
+    this.addLoadCommand();   // 注意要添加load方法
+    this.addGameEndCommand();
+  };
+  
+  Sprite_TMRingCommand.prototype.currentCommandName = function() {
+    return this._commandSprites[this._commandIndex].name();
+  };
+
+  Sprite_TMRingCommand.prototype.addMainCommands = function() {
+    if (this.needsCommand('item') && checkSwi(itemSwi)) {
+      var sprite = new Sprite_TMRingCommandIcon('item');
+      this._commandSprites.push(sprite);
+      this.addChild(sprite);
+    }
+    if (this.needsCommand('skill') && checkSwi(skillSwi)) {
+      var sprite = new Sprite_TMRingCommandIcon('skill');
+      this._commandSprites.push(sprite);
+      this.addChild(sprite);
+    }
+    if (this.needsCommand('equip') && checkSwi(equipSwi)) {
+      var sprite = new Sprite_TMRingCommandIcon('equip');
+      this._commandSprites.push(sprite);
+      this.addChild(sprite);
+    }
+    if (this.needsCommand('status') && checkSwi(statusSwi)) {
+      var sprite = new Sprite_TMRingCommandIcon('status');
+      this._commandSprites.push(sprite);
+      this.addChild(sprite);
+    }
+  };
+  
+  Sprite_TMRingCommand.prototype.addFormationCommand = function() {
+    if (this.needsCommand('formation') && checkSwi(formationSwi)) {
+      var sprite = new Sprite_TMRingCommandIcon('formation');
+      this._commandSprites.push(sprite);
+      this.addChild(sprite);
+    }
+  };
+
+  Sprite_TMRingCommand.prototype.addOriginalCommand = function() {
+    if (Imported.TMGoldLevelUp && TextManager.goldLevelUp && checkSwi(goldLevelUpSwi) && goldLevelUpON) {
+      var sprite = new Sprite_TMRingCommandIcon('goldLevelUp');
+      this._commandSprites.push(sprite);
+      this.addChild(sprite);
+    }
+    if (Imported.JKMail && checkSwi(mailSwi) && mailON) {
+      var sprite = new Sprite_TMRingCommandIcon('mail');   // 增加了JK_MailSystem.js
+      this._commandSprites.push(sprite);
+      this.addChild(sprite);
+    }
+  };
+
+  Sprite_TMRingCommand.prototype.addCECommand = function () {
+      if (ce1ON && checkSwi(ce1Swi)) {
+        var sprite = new Sprite_TMRingCommandIcon('ce1');
+        this._commandSprites.push(sprite);
+        this.addChild(sprite);
+      }
+      if (ce2ON && checkSwi(ce2Swi)) {
+        var sprite = new Sprite_TMRingCommandIcon('ce2');
+        this._commandSprites.push(sprite);
+        this.addChild(sprite);
+      }
+      if (ce3ON && checkSwi(ce3Swi)) {
+        var sprite = new Sprite_TMRingCommandIcon('ce3');
+        this._commandSprites.push(sprite);
+        this.addChild(sprite);
+      }
+      if (ce4ON && checkSwi(ce4Swi)) {
+        var sprite = new Sprite_TMRingCommandIcon('ce4');
+        this._commandSprites.push(sprite);
+        this.addChild(sprite);
+      }
+      if (ce5ON && checkSwi(ce5Swi)) {
+        var sprite = new Sprite_TMRingCommandIcon('ce5');
+        this._commandSprites.push(sprite);
+        this.addChild(sprite);
+      }
+      if (ce6ON && checkSwi(ce6Swi)) {
+        var sprite = new Sprite_TMRingCommandIcon('ce6');
+        this._commandSprites.push(sprite);
+        this.addChild(sprite);
+      }
+      if (ce7ON && checkSwi(ce7Swi)) {
+        var sprite = new Sprite_TMRingCommandIcon('ce7');
+        this._commandSprites.push(sprite);
+        this.addChild(sprite);
+      }
+      if (ce8ON && checkSwi(ce8Swi)) {
+        var sprite = new Sprite_TMRingCommandIcon('ce8');
+        this._commandSprites.push(sprite);
+        this.addChild(sprite);
+      }
+      if (ce9ON && checkSwi(ce9Swi)) {
+        var sprite = new Sprite_TMRingCommandIcon('ce9');
+        this._commandSprites.push(sprite);
+        this.addChild(sprite);
+      }
+      if (ce10ON && checkSwi(ce10Swi)) {
+        var sprite = new Sprite_TMRingCommandIcon('ce10');
+        this._commandSprites.push(sprite);
+        this.addChild(sprite);
+      }
+  }
+  
+  Sprite_TMRingCommand.prototype.addOptionsCommand = function() {
+    if (checkSwi(optionsSwi)) {
+      var sprite = new Sprite_TMRingCommandIcon('options');
+      this._commandSprites.push(sprite);
+      this.addChild(sprite);
+    }
+  };
+
+  Sprite_TMRingCommand.prototype.addSaveCommand = function() {
+    if (this.needsCommand('save') && checkSwi(saveSwi)) {
+      var sprite = new Sprite_TMRingCommandIcon('save');
+      this._commandSprites.push(sprite);
+      this.addChild(sprite);
+    }
+  };
+
+// 在这里把load方法写上（照猫画虎就行）
+  Sprite_TMRingCommand.prototype.addLoadCommand = function() {
+      if (checkSwi(loadSwi)) {
+        var sprite = new Sprite_TMRingCommandIcon('load');
+        this._commandSprites.push(sprite);
+        this.addChild(sprite);
+      }
+  };
+
+  Sprite_TMRingCommand.prototype.addGameEndCommand = function() {
+    if (checkSwi(gameEndSwi)) {
+      var sprite = new Sprite_TMRingCommandIcon('gameEnd');
+      this._commandSprites.push(sprite);
+      this.addChild(sprite);
+    }
+  };
+
+  Sprite_TMRingCommand.prototype.needsCommand = function(name) {
+    var flags = $dataSystem.menuCommands;
+    if (flags) {
+      switch (name) {
+      case 'item':
+        return flags[0];
+      case 'skill':
+        return flags[1];
+      case 'equip':
+        return flags[2];
+      case 'status':
+        return flags[3];
+      case 'formation':
+        return flags[4];
+      case 'save':
+        return flags[5];
+      }
+    }
+    return true;
+  };
+  
+  Sprite_TMRingCommand.prototype.makeCaption = function() {
+    if (useCaption) {
+      this._captionSprite = new Sprite_TMRingCommandCaption();
+      this.addChild(this._captionSprite);
+    }
+  };
+
+  Sprite_TMRingCommand.prototype.update = function() {
+    Sprite.prototype.update.call(this);
+    this.updateVisible();
+    if ($gameTemp.isRingCommandVisible()) {
+      if (this._commandRadius < radiusMax) {    // 把radius相关的数字4改为了6。修改后，图标与玩家的距离将会改变（即轮盘半径会变大）。在之后增加新的指令时建议这样修改。下面（包括这里）一共要修改三处地方。在需要改的那一行会有相关注释。这个重新写的版本用参数radiusMax代替了要修改的数字。
+        if (this._commandRadius === 0) {
+          if (openResetIndex) {
+            this._commandIndex = saveLastIndex ? $gameTemp.ringCommandLastIndex() : 0;
+            this.refresh();
+          }
+          AudioManager.playSe(seOpenCommand);
+        }
+        if (openGoldWindow && this.parent.parent) {
+          var goldWindow = this.parent.parent._messageWindow._goldWindow;
+          goldWindow.x = goldWindowX;
+          goldWindow.y = goldWindowY;
+          goldWindow.open();
+        }
+        this._commandRadius++;
+      }
+      this.updateInput();
+      if (boundToScreen) {
+        this.x = screenX;
+        this.y = screenY;        
+      } else {
+        this.x = $gamePlayer.screenX();
+        this.y = $gamePlayer.screenY();
+      }
+    } else {
+      if (this._commandRadius > 0) {
+        if (this._commandRadius === radiusMax) {   // 这里radius也要修改成上面设的数字（假如上面写的是<6,这里就要写等于6）。与radius相关的数字除0以外都要统一修改。这个重新写的版本用参数radiusMax代替了要修改的数字。
+          if (openGoldWindow) {
+            this.parent.parent._messageWindow._goldWindow.close();
+          }
+          AudioManager.playSe(seCloseCommand);
+        }
+        this._commandRadius--;
+      }
+    }
+  };
+  
+  Sprite_TMRingCommand.prototype.updateVisible = function() {
+    if (SceneManager._scene.isBusy() || $gameMap.isEventRunning() ||
+        !$gameSystem.isMenuEnabled()) {
+      $gameTemp.setRingCommandVisible(false);
+    } else if (useEscape) {
+    } else {
+      $gameTemp.setRingCommandVisible(Input.isPressed('control'));
+    }
+    this.visible = this._commandRadius > 0;
+  };
+  
+  Sprite_TMRingCommand.prototype.updateInput = function() {
+    if (Input.isRepeated('left') || (TouchInput.isRepeated() &&
+        TouchInput.x < $gamePlayer.screenX() - 24)) {
+      this._commandIndex--
+      if (this._commandIndex < 0) {
+        this._commandIndex = this._commandSprites.length - 1;
+      }
+      this.refresh();
+      SoundManager.playCursor();
+    }
+    if (Input.isRepeated('right') || (TouchInput.isRepeated() &&
+        TouchInput.x > $gamePlayer.screenX() + 24)) {
+      this._commandIndex++;
+      if (this._commandIndex >= this._commandSprites.length) {
+        this._commandIndex = 0;
+      }
+      this.refresh();
+      SoundManager.playCursor();
+    }
+    if (Input.isTriggered('ok') || (TouchInput.isTriggered() &&
+        TouchInput.x >= $gamePlayer.screenX() - 24 &&
+        TouchInput.x <= $gamePlayer.screenX() + 24)) {
+      var sprite = this._commandSprites[this._commandIndex];
+      if (sprite.isEnabled()) {
+        switch (sprite.name()) {
+        case 'item':
+          $gameTemp.setCalledByRingCommand(true);
+          SceneManager.push(Scene_Item);
+          break;
+        case 'skill':
+          $gameTemp.setCalledByRingCommand(true);
+          SceneManager.push(Scene_Skill);
+          break;
+        case 'equip':
+          SceneManager.push(Scene_Equip);
+          break;
+        case 'status':
+          $gameTemp.setCalledByRingCommand(true);
+          SceneManager.push(Scene_Status);
+          break;
+        case 'formation':
+          SceneManager.push(Scene_RCFormation);
+          break;
+        case 'options':
+          SceneManager.push(Scene_Options);
+          break;
+        case 'save':
+          SceneManager.push(Scene_Save);
+          break;
+        case 'load':   // 在这里实现最终的呼出界面功能
+          SceneManager.push(Scene_Load);
+          break;
+        case 'mail':   // 增加了JK_MailSystem.js
+          $gameTemp.reserveCommonEvent(mailCEId);
+          break;
+        case 'gameEnd':
+          SceneManager.push(Scene_GameEnd);
+          break;
+        case 'goldLevelUp':
+          SceneManager.push(TMParam.Scene_GoldLevelUp);
+          break;
+        case 'ce1':
+          $gameTemp.reserveCommonEvent(ce1CEId);
+          break;
+        case 'ce2':
+          $gameTemp.reserveCommonEvent(ce2CEId);
+          break;
+        case 'ce3':
+          $gameTemp.reserveCommonEvent(ce3CEId);
+          break;
+        case 'ce4':
+          $gameTemp.reserveCommonEvent(ce4CEId);
+          break;
+        case 'ce5':
+          $gameTemp.reserveCommonEvent(ce5CEId);
+          break;
+        case 'ce6':
+          $gameTemp.reserveCommonEvent(ce6CEId);
+          break;
+        case 'ce7':
+          $gameTemp.reserveCommonEvent(ce7CEId);
+          break;
+        case 'ce8':
+          $gameTemp.reserveCommonEvent(ce8CEId);
+          break;
+        case 'ce9':
+          $gameTemp.reserveCommonEvent(ce9CEId);
+          break;
+        case 'ce10':
+          $gameTemp.reserveCommonEvent(ce10CEId);
+          break;
+        }
+        this._commandRadius = 0;
+        if (openGoldWindow) {
+          this.parent.parent._messageWindow._goldWindow.hide();
+        }
+        $gameTemp.setRingCommandLastIndex(this._commandIndex);
+        $gameTemp.setRingCommandVisible(false);
+        SoundManager.playOk();
+      } else {
+        SoundManager.playBuzzer();
+      }
+    }
+    if (useEscape && this._commandRadius === radiusMax &&
+        (Input.isTriggered('menu') || TouchInput.isCancelled())) {   // 这里也要修改，让数字与上方设的相关非零数字一样。这个重新写的版本用参数radiusMax代替了要修改的数字。
+      $gameTemp.setRingCommandVisible(false);
+    }
+  };
+
