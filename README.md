@@ -6,7 +6,6 @@
 - 📫 呃，如果有人想跟我聊个天或是说些事儿，可以发邮件到Rose_shadows@163.com（不过我可能没法在短时间内回信）
 # :sparkles: Hello!
 - 👋 Welcome to @Roseshadows little house.
-- Sorry for my odd English grammers and expressions as I'm not a native English speaker.
 - 👀 I’m making efforts on creating my own game. The game engine is *RPG Maker MV*.
 - 🌱 I’m currently learning JavaScript to implement more interesting functions. And now I'm just a noob.
 - 💞️ All of my plugins are free to use for both commercial and non-commercial projects. You can find them in another branch. Credits are appreciated, but not required.(The concrete Term of Use can be found inside plugins.) (As if someone would use them! lol)  
