@@ -1,7 +1,7 @@
-- [目录](#目录)
-- [Directory](#Directory)
+- [目录](#:sparkles:目录)
+- [Directory](#:sparkles:Directory)
 * * *
-# 目录
+# ✨目录
 ### :notebook:文件列表：（JSON/HTML/其他文件备份）
 - （暂无）
 ### :notebook:插件列表：
@@ -14,7 +14,7 @@
 |:----:|:-----|
 |**ComputerScene.js**|简单创建一个电脑桌面样式的界面。它不是个插件，因为所有的参数都得在脚本内部自行修改。界面关键字是Scene_Test。如果想测试，不用做任何调整，将此代码作为插件直接在一个新工程中安装好，随后在游戏中调用脚本SceneManager.push(Scene_Test);即可。或许有一天会依据此代码写一个功能更完整的插件。|
 * * *
-# Directory
+# ✨Directory
 ### :notebook:Files List: (used for tracing JSON/HTML/other files on their usage)
 - (None so far)
 
