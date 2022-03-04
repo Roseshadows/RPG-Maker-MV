@@ -1,7 +1,7 @@
-- [目录](# :sparkles:-目录)
-- [Directory](# :sparkles:-Directory)
+- [目录](# 目录)
+- [Directory](# Directory)
 * * *
-# :sparkles: 目录
+# :sparkles:目录
 ## :notebook:文件列表：（JSON/HTML/其他文件备份）
 - （暂无）
 ## :notebook:插件列表：
@@ -12,7 +12,7 @@
 ## :notebook:代码列表：
 - （暂无）
 * * *
-# :sparkles: Directory
+# :sparkles:Directory
 ## :notebook:Files List: (used for tracing JSON/HTML/other files on their usage)
 - (None so far)
 
