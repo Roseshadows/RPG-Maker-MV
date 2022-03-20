@@ -2,7 +2,7 @@
 // RSSD_HideDestinationSprite.js
 // ===================================================
 /*:
- * @plugindesc ver1.00 - 隐藏目的地光标
+ * @plugindesc ver1.00 - Use a switch to control when to hide/show destination sprite.
  * @author 离影玫 | Rose_shadows
  * @help
  * === Introduction ===
