@@ -28,7 +28,6 @@
 |**TMRingCommand_Upgraded.js**|I modified tomoaky's TMRingCommand.js, which was released under MIT license, to make it meet my needs. In this upgraded plugin, not only can you use switches to control when to hide / show commands respectively, but up to 10 common events can also be added to the ring menu as commands. Besides you are now able to customize the object (player/screen) which the ring menu is bound to. More settings are added to the param list as well. [Link to original plugin](https://github.com/munokura/tomoaky-MV-plugins/blob/master/TMRingCommand.js)|
 |**RSSD_HideDestinationSprite.js**|Use a switch to control when to show or hide the destination sprite. When the specific switch is ON, the sprite will be hidden.|
 |**SceneDesktop.js**|Provides super class for phone-like scenes，allowing developers to create custom phone-like scenes more conveniently.|
-14
 |**RSSD_ScenePhone.js**|This plugin allows you to create a phone-like scene. The player can enter scenes, trigger common events and run custom codes by clicking APPs. Needs the plugin SceneDesktop.js|
 
 ### :notebook:Codes List: (used for tracing codes on their functions)
