@@ -7,7 +7,8 @@
  * @help
  * === 介绍 ===
  * 
- * 该插件创建一个手机样式的菜单。玩家点击其中的APP，可以进入界面、触发公共事件、运行自定义代码等。
+ * 该插件创建一个手机样式的菜单。玩家点击其中的APP，可以进入界面、触发公
+ * 共事件、运行自定义代码等。
  * 默认情况下，该插件最多能创建20个APP。
  * 
  * !注意!：
@@ -43,9 +44,18 @@
  * - 打开手机界面。
  * 
  * 
+ * 
  * === 使用条款 ===
  * 
- * 免费用于商业与非商业工程。不强制署名。
+ * 免费用于商业与非商业工程。允许修改或再次发布插件。不强制署名。
+ * 
+ * 
+ * 
+ * === 版本历史 ===
+ * 
+ * ver 0.5b - 发布。
+ * ver 0.6b - 修复了当APP参数为空时，插件报错的问题。
+ * ver 0.61b - 修复了关于公共事件触发的bug。
  * 
  * @param Menu
  * @text === 菜单设置 ===
@@ -86,7 +96,7 @@
  * @on 显示
  * @off 隐藏
  * @desc 是否显示窗口皮肤？
- * @default false
+ * @default true
  * 
  * @param 窗口皮肤
  * @parent Menu
@@ -452,12 +462,12 @@
  * @parent js
  * @type combo
  * @option SceneManager.goto(Scene_Title); //返回标题界面
- * @option SceneManager.goto(Scenn_Gameover); //游戏结束
+ * @option SceneManager.goto(Scene_Gameover); //游戏结束
  * @option SceneManager.goto(Scene_Map);//回到地图
  * @option SceneManager.pop() //退出当前界面
  * @option SceneManager.exit() //关掉游戏
  * @desc 若绑定功能类型为运行自定义代码，则会运行此处设置的代码。可以设置不止一条代码。
- * @default ""
+ * @default 
  * 
  */
 
@@ -550,9 +560,9 @@ RSSD.ScenePhone = {};
 
         $.getAppParam = function(index) {
             var indexM = index + 1;
-            $._currentApp = JSON.parse($.parameters['APP-'+indexM]);
-            if (!JSON.parse($.parameters['APP-'+indexM]) || JSON.stringify($._currentApp) == '{}') return;
             $.app[index] = {};
+            if (!$.parameters['APP-'+indexM] || $.parameters['APP-'+indexM] === '{}') return;
+            $._currentApp = JSON.parse($.parameters['APP-'+indexM]);
             $.app[index].name           = String($._currentApp['APP名']) || "";
             $.app[index].iconIndex      = Number($._currentApp['图标索引']) || 0;
             $.app[index].swi            = Number($._currentApp['打开开关']) || 0;
@@ -567,12 +577,13 @@ RSSD.ScenePhone = {};
         for(var i = 0; i < $.appAmount; i++) {
             $.getAppParam(i);
         };
+        console.log(JSON.stringify($.app));
 
         /**集合可用指令 */
         $.validApp = [];
         $.validAppOriginalIndex = [];  // 追踪可用指令在插件参数中的序列。$.validApp[index] 在插件参数的序列就是 $.validAppOriginalIndex[index] 。
         for (var i = 0; i < $.appAmount; i++) {
-            if($.app[i]) {
+            if($.app[i] && JSON.stringify($.app[i]) != '{}') {
                 var lastIndex = $.validApp.length || 0;
                 $.validApp[lastIndex] = {};
                 $.validApp[lastIndex] = $.app[i];
@@ -581,6 +592,7 @@ RSSD.ScenePhone = {};
                 continue;
             }
         }
+        console.log(JSON.stringify($.validAppOriginalIndex));
 
         /**将可用图标集合到同一个数组中。 */
 
@@ -726,11 +738,11 @@ RSSD.ScenePhone = {};
                         if($.app[id].callCommonMode) {
                             // 等待玩家自行退出
                             this._phoneWindow.activate();
-                            $gameSystem.reserveCommonEvent($.app[id].commonEvent);
+                            $gameTemp.reserveCommonEvent($.app[id].commonEvent);
                         } else {
                             // 立即退出并执行
                             SceneManager.goto(Scene_Map);
-                            $gameSystem.reserveCommonEvent($.app[id].commonEvent);
+                            $gameTemp.reserveCommonEvent($.app[id].commonEvent);
                         }
                     }
                     break;
@@ -940,6 +952,7 @@ RSSD.ScenePhone = {};
         // };
 
     } else {
-        alert('RSSD_ScenePhone.js 需要 SceneDesktop.js 插件。看看是不是忘记安装或者插件顺序不对！')
+        alert('RSSD_ScenePhone.js 需要 SceneDesktop.js 插件。看看是不是忘记安装或者插件顺序不对！');
+        console.log('RSSD_ScenePhone.js 需要 SceneDesktop.js 插件。看看是不是忘记安装或者插件顺序不对！');
     };
 })(RSSD.ScenePhone);
