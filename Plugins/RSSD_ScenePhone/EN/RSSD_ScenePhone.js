@@ -2,7 +2,7 @@
 //  RSSD_ScenePhone.js
 // ========================================================
 /*:
- * @plugindesc ver0.5b - Creates a phone-like scene. The player can get access to menus, trigger common events or run custom codes by clicking APPs.
+ * @plugindesc ver0.61b - Creates a phone-like scene. The player can get access to menus, trigger common events or run custom codes by clicking APPs.
  * @author 离影玫 || Rose_shadows
  * @help
  * === Introduction ===
@@ -25,7 +25,7 @@
  *  - Please place the windowskin image into the folder img/system/ ,
  *    then config the corresponding plugin parameters.
  * 
- * If you want to show *some Picture Beneath or Above the Scene* :
+ * If you want to show *Picture Beneath or Above the Scene* :
  *  - Please create a folder named 'phones' in the folder img/ ,
  *    and place the Background and Mask image files into the folder you just 
  *    created.
@@ -58,6 +58,8 @@
  * 
  * === Version Log ===
  * ver 0.5b - Finish the plugin.
+ * ver 0.6b - Fixed the bug that the plugin will get an error if any plugin parameter of APP series is empty.
+ * ver 0.61b - Fixes the bugs about triggering common events.
  * 
  * @param Menu
  * @text === Menu Settings ===
@@ -503,12 +505,12 @@
  * @parent js
  * @type combo
  * @option SceneManager.goto(Scene_Title); //Return to Title Scene
- * @option SceneManager.goto(Scenn_Gameover); //Gameover
+ * @option SceneManager.goto(Scene_Gameover); //Gameover
  * @option SceneManager.goto(Scene_Map);//Return to Map
  * @option SceneManager.pop() //Leave the current Scene
  * @option SceneManager.exit() //Shut down the game
  * @desc If Function Type is Run Custom Codes, run the codes set here. 
- * @default ""
+ * @default 
  * 
  */
 
@@ -601,9 +603,9 @@ RSSD.ScenePhone = {};
 
         $.getAppParam = function(index) {
             var indexM = index + 1;
-            $._currentApp = JSON.parse($.parameters['APP-'+indexM]);
-            if (!JSON.parse($.parameters['APP-'+indexM]) || JSON.stringify($._currentApp) == '{}') return;
             $.app[index] = {};
+            if (!$.parameters['APP-'+indexM] || $.parameters['APP-'+indexM] === '{}') return;
+            $._currentApp = JSON.parse($.parameters['APP-'+indexM]);
             $.app[index].name           = String($._currentApp['APP名']) || "";
             $.app[index].iconIndex      = Number($._currentApp['图标索引']) || 0;
             $.app[index].swi            = Number($._currentApp['打开开关']) || 0;
@@ -618,12 +620,13 @@ RSSD.ScenePhone = {};
         for(var i = 0; i < $.appAmount; i++) {
             $.getAppParam(i);
         };
+        console.log(JSON.stringify($.app));
 
         /**集合可用指令 */
         $.validApp = [];
         $.validAppOriginalIndex = [];  // 追踪可用指令在插件参数中的序列。$.validApp[index] 在插件参数的序列就是 $.validAppOriginalIndex[index] 。
         for (var i = 0; i < $.appAmount; i++) {
-            if($.app[i]) {
+            if($.app[i] && JSON.stringify($.app[i]) != '{}') {
                 var lastIndex = $.validApp.length || 0;
                 $.validApp[lastIndex] = {};
                 $.validApp[lastIndex] = $.app[i];
@@ -632,6 +635,7 @@ RSSD.ScenePhone = {};
                 continue;
             }
         }
+        console.log(JSON.stringify($.validAppOriginalIndex));
 
         /**将可用图标集合到同一个数组中。 */
 
@@ -777,11 +781,11 @@ RSSD.ScenePhone = {};
                         if($.app[id].callCommonMode) {
                             // 等待玩家自行退出
                             this._phoneWindow.activate();
-                            $gameSystem.reserveCommonEvent($.app[id].commonEvent);
+                            $gameTemp.reserveCommonEvent($.app[id].commonEvent);
                         } else {
                             // 立即退出并执行
                             SceneManager.goto(Scene_Map);
-                            $gameSystem.reserveCommonEvent($.app[id].commonEvent);
+                            $gameTemp.reserveCommonEvent($.app[id].commonEvent);
                         }
                     }
                     break;
