@@ -70,7 +70,7 @@ Note that currently most of these plugins are in Chinese.
 > Credits are appreciated, but not required.
 
 Other plugins are released under MIT License.
-For exact ToU, please check the plugin's help file.
+For exact Terms of Use, please check the plugin's help file.
 
 <!---
 Roseshadows/Roseshadows is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
