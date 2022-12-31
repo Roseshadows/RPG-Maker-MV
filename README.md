@@ -44,7 +44,7 @@
 > You can also modify or redistribute this plugin, as long as you do not claim this plugin belongs to anyone except me, Rose_shadows | 离影玫 | OrchidBones | 兰骨. 
 >
 > Credits are appreciated, but not required.
-<br>
+
 Other plugins are released under MIT License.
 For exact ToU, please check the plugin's help file.
 
