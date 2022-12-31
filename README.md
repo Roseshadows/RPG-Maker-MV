@@ -15,6 +15,11 @@
 |代码名|代码功能|
 |:----:|:-----|
 |**ComputerScene.js**|简单创建一个电脑桌面样式的界面。它不是个插件，因为所有的参数都得在脚本内部自行修改。界面关键字是Scene_Test。如果想测试，不用做任何调整，将此代码作为插件直接在一个新工程中安装好，随后在游戏中调用脚本SceneManager.push(Scene_Test);即可。相关插件已经发布了！去看看 SceneDesktop.js 和 RSSD_ScenePhone.js 吧。|
+### :notebook:使用条款：
+- 以插件帮助文档内写的的使用条款为准。少部分插件遵循MIT协议，大多数插件则遵循以下条款：
+> 免费用于商业与非商业工程。允许二次转发及修改。
+>
+> 不强制署名，但不要声明该插件是除 Rose_shadows | 离影玫 | OrchidBones | 兰骨 以外的人所写的。
 * * *
 # Contents
 ### :notebook:Files List: (used for tracing JSON/HTML/other files on their usage)
@@ -32,6 +37,15 @@
 |Name|Functions|
 |:----:|:-----|
 |**ComputerScene.js**|Creates a scene which looks like computer's desktop. This is not a plugin. You need to modify the script yourself following the instructions inside. However, you can test the script as a plugin in a new project without any adjustment. To test it, you can just make a script call: SceneManager.push(Scene_Test); The corresponding plugins have been released! Check the plugins SceneDesktop.js and RSSD_ScenePhone.js above.)|
+### :notebook:Terms of Use
+- Most of plugins are released under following license:
+> Free to be used in both commercial and non-commercial projects.
+>
+> You can also modify or redistribute this plugin, as long as you do not claim this plugin belongs to anyone except me, Rose_shadows | 离影玫 | OrchidBones | 兰骨. 
+>
+> Credits are appreciated, but not required.
+Other plugins are released under MIT License.
+For exact ToU, please check the plugin's help file.
 
 <!---
 Roseshadows/Roseshadows is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
