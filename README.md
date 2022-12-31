@@ -16,7 +16,7 @@ This repository contains all the plugins I made for RPG Maker MV, an engine for 
 |**[SceneDesktop.js](./Plugins/SceneDesktop.js)**|为手机样式菜单提供父类，能够让开发者更便捷地创建手机样式的菜单。|
 |**[ScenePhonesAndComputers.js](./Plugins/ScenePhonesAndComputers.js)**|SceneDesktop.js 的一个使用实例。|
 |**[RSSD_ScenePhone.js](./Plugins/RSSD_ScenePhone.js)**|创造一个智能手机样式的菜单。玩家可以点击APP以进入界面、触发公共事件或运行自定义代码。根据插件的帮助文档，你可以创建多个手机界面。需要 [SceneDesktop.js](./Plugins/SceneDesktop.js) 作为前置插件。|
-|**[RSSD_SimpleScrollableInfoBoard.js](./Plugins/RSSD_SimpleScrollableInfoBoard.js)**|事件指令【显示滚动文本】的扩展插件。特定开关打开后，滚动文本窗口可用作一个显示长文章的可滚动的信息板。你可以使用鼠标滚轮或上下键来滚动信息，用常规方法关闭信息板。插件还允许你通过设置文本滚动速度来决定信息板背景类型是窗口还是透明。|
+|**[RSSD_SimpleScrollableInfoBoard.js](./Plugins/RSSD_SimpleScrollableInfoBoard.js)**|事件指令【显示滚动文本】的扩展插件。也可以用于RMMZ。特定开关打开后，滚动文本窗口可用作一个显示长文章的可滚动的信息板。你可以使用鼠标滚轮或上下键来滚动信息，用常规方法关闭信息板。插件还允许你通过设置文本滚动速度来决定信息板背景类型是窗口还是透明。|
 |**[RSSD_SwapTitleBackground.js](./Plugins/RSSD_SwapTitleBackground.js)**|允许你在标题界面中动态切换多个背景图片。|
 |**[RSSD_VXFacesets.js](./Plugins/RSSD_VXFacesets.js)**|允许你调整脸图的大小和在窗口中的偏移位置。|
 |**[RSSD_VarSwiFindIdByName.js](./Plugins/RSSD_VarSwiFindIdByName.js)**|使用脚本获取或控制开关/变量时可以输入开关/变量名称。|
@@ -47,7 +47,7 @@ Note that currently most of these plugins are in Chinese.
 |**[SceneDesktop.js](./Plugins/SceneDesktop.js)**|Provides super class for phone-like scenes，allowing developers to create custom phone-like scenes more conveniently.|
 |**[ScenePhonesAndComputers.js](./Plugins/ScenePhonesAndComputers.js)**|An instance of SceneDesktop.js.|
 |**[RSSD_ScenePhone.js](./Plugins/RSSD_ScenePhone.js)**|This plugin allows you to create a phone-like scene. The player can enter scenes, trigger common events and run custom codes by clicking APPs. You can create multiple phone scenes following the instructions written in the help file. Needs the plugin [SceneDesktop.js](./Plugins/SceneDesktop.js).|
-|**[RSSD_SimpleScrollableInfoBoard.js](./Plugins/RSSD_SimpleScrollableInfoBoard.js)**|This plugin extends the function of the event command 'Show Scroll Text'. When the specific switch is ON, the scroll text window can be used as a scrollable board to show long text. You can use mouse wheel or press up/down key to apply scroll effect, and exit board in the mornal way. You can also config background type to window or transparent by setting message scroll speed.|
+|**[RSSD_SimpleScrollableInfoBoard.js](./Plugins/RSSD_SimpleScrollableInfoBoard.js)**|This plugin extends the function of the event command 'Show Scroll Text'. When the specific switch is ON, the scroll text window can be used as a scrollable board to show long text. You can use mouse wheel or press up/down key to apply scroll effect, and exit board in the normal way. You can also config background type to window or transparent by setting message scroll speed. The plugin can also be used in RMMZ.|
 |**[RSSD_SwapTitleBackground.js](./Plugins/RSSD_SwapTitleBackground.js)**|Allows you to switch multiple title backgrounds dynamically in the title scene.|
 |**[RSSD_VXFacesets.js](./Plugins/RSSD_VXFacesets.js)**|Allows you to adjust facesets' sizes and offsets. Mainly used for using vx-sized facesets in mv.|
 |**[RSSD_VarSwiFindIdByName.js](./Plugins/RSSD_VarSwiFindIdByName.js)**|When getting or setting switches'/variables' values via scripts, you can use switchs' / variables' names instead of ids. It's invalid for corresponding event commands.|
