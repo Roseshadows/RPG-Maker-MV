@@ -169,12 +169,12 @@
  * @param 背景X坐标
  * @parent Back
  * @desc 图片的X坐标。可以使用评估代码。
- * @default SceneManager._screenWidth / 2 + 50
+ * @default SceneManager._screenWidth / 2 + 3
  * 
  * @param 背景Y坐标
  * @parent Back
  * @desc 图片的Y坐标。可以使用评估代码。
- * @default SceneManager._screenHeight / 2 + 30
+ * @default SceneManager._screenHeight / 2 + 9
  * 
  * @param 背景不透明度
  * @parent Back
