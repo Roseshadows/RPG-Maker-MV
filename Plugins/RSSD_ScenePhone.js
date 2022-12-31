@@ -661,7 +661,7 @@ var obj = {};
         */
 
     } else {
-        alert('RSSD_ScenePhone.js 需要 SceneDesktop.js 插件。看看是不是忘记安装或者插件顺序不对！')
+        alert($.pluginName+'.js 需要 SceneDesktop.js 插件。看看是不是忘记安装或者插件顺序不对！')
     };
 })(obj);
 RSSD.ScenePhone[obj.pluginName] = obj;
