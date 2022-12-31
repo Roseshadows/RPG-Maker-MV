@@ -2,8 +2,6 @@
 - [Contents](#Contents)
 * * *
 # 目录
-### :notebook:文件列表：（JSON/HTML/其他文件备份）
-- （暂无）
 ### :notebook:插件列表：
 |插件名|插件功能|
 |:----:|:-----|
@@ -22,9 +20,6 @@
 > 不强制署名，但不要声明该插件是除 Rose_shadows | 离影玫 | OrchidBones | 兰骨 以外的人所写的。
 * * *
 # Contents
-### :notebook:Files List: (used for tracing JSON/HTML/other files on their usage)
-- (None so far)
-
 ### :notebook:Plugin List: (used for tracing plugins on their functions)
 |Name|Functions|
 |:----:|:-----|
