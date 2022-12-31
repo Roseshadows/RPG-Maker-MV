@@ -10,7 +10,7 @@ This repository contains all the plugins I made for RPG Maker MV, an engine for 
 |:----:|:-----|
 |**[Drill_RSSD_X_PortraitManager.js](./Plugins/Drill_RSSD_X_PortraitManager.js)**|Drill图片类插件的扩展插件。可以用控制字符控制图片的各种行为。需要[Drill_PictureShortcut.js](https://github.com/DrillUp/drill_plugins/blob/main/plugins/Drill_PictureShortcut.js)作前置插件，也可兼容其他一些Drill图片类插件。具体可以去看插件帮助文档。|
 |**[RSSD_CEFindIdByName.js](./Plugins/RSSD_CEFindIdByName.js)**|使用脚本调用公共事件时可以通过输入公共事件名称。|
-|**[RSSD_DisbaleMapAndMessageInput.js](./Plugins/RSSD_DisbaleMapAndMessageInput.js)**|特定开关打开时，禁用地图玩家移动/消息处理。主要用于图片事件菜单。注意，一定要慎用，否则游戏可能会卡住。|
+|**[RSSD_DisableMapAndMessageInput.js](./Plugins/RSSD_DisableMapAndMessageInput.js)**|特定开关打开时，禁用地图玩家移动/消息处理。主要用于图片事件菜单。注意，一定要慎用，否则游戏可能会卡住。|
 |**[RSSD_HideDestinationSprite.js](./Plugins/RSSD_HideDestinationSprite.js)**|用一个开关来控制目的地光标的显示与隐藏。开关打开，光标隐藏。熟悉了一下update的用法。|
 |**[SceneDesktop.js](./Plugins/SceneDesktop.js)**|为手机样式菜单提供父类，能够让开发者更便捷地创建手机样式的菜单。|
 |**[ScenePhonesAndComputers.js](./Plugins/ScenePhonesAndComputers.js)**||
@@ -41,7 +41,7 @@ Note that currently most of these plugins are in Chinese.
 |:----:|:-----|
 |**[Drill_RSSD_X_PortraitManager.js](./Plugins/Drill_RSSD_X_PortraitManager.js)**|Allows you to use escape codes to control picutres. Needs [Drill_PictureShortcut.js](https://github.com/DrillUp/drill_plugins/blob/main/plugins/Drill_PictureShortcut.js). It's also compatible with other drill plugins in picture series. With this plugin, you can conveniently show/hide pictures, focus on certain pictures, change pictures' tones, priority, anchor, position, etc. Along with other campatible plugins, you can even set pictures' fade-in/fade-out/continued effect, or use the filter effect on pictures.|
 |**[RSSD_CEFindIdByName.js](./Plugins/RSSD_CEFindIdByName.js)**|When calling common events via scripts, you can use common event name instead of id. It's invalid for event command 'Call Common Event'.|
-|**[RSSD_DisbaleMapAndMessageInput.js](./Plugins/RSSD_DisbaleMapAndMessageInput.js)**|When the specific switches is ON, invalidate the input for player's movement and message process. Used for menu created with events and pictures. Warning: This may freeze the game process, so the functions must be used carefully.|
+|**[RSSD_DisbaleMapAndMessageInput.js](./Plugins/RSSD_DisableMapAndMessageInput.js)**|When the specific switches is ON, invalidate the input for player's movement and message process. Used for menu created with events and pictures. Warning: This may freeze the game process, so the functions must be used carefully.|
 |**[RSSD_HideDestinationSprite.js](./Plugins/RSSD_HideDestinationSprite.js)**|Use a switch to control when to show or hide the destination sprite. When the specific switch is ON, the sprite will be hidden.|
 |**[SceneDesktop.js](./Plugins/SceneDesktop.js)**|Provides super class for phone-like scenes，allowing developers to create custom phone-like scenes more conveniently.|
 |**[ScenePhonesAndComputers.js](./Plugins/ScenePhonesAndComputers.js)**||
