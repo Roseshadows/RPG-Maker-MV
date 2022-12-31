@@ -1,6 +1,6 @@
-我的所有用于游戏制作引擎 RPG Maker MV 的插件。
+我的所有用于 RPG Maker MV 的插件。
 <br>
-This repository contains all the plugins I made for RPG Maker MV, an engine for game developing.
+This repository contains all the plugins I made for RPG Maker MV.
 <br>
 - [目录](#目录)
 - [Content](#Content)
@@ -50,7 +50,7 @@ Note that currently most of these plugins are in Chinese.
 |**[RSSD_SimpleScrollableInfoBoard.js](./Plugins/RSSD_SimpleScrollableInfoBoard.js)**|This plugin extends the function of the event command 'Show Scroll Text'. When the specific switch is ON, the scroll text window can be used as a scrollable board to show long text. You can use mouse wheel or press up/down key to apply scroll effect, and exit board in the normal way. You can also config background type to window or transparent by setting message scroll speed. The plugin can also be used in RMMZ.|
 |**[RSSD_SwapTitleBackground.js](./Plugins/RSSD_SwapTitleBackground.js)**|Allows you to switch multiple title backgrounds dynamically in the title scene.|
 |**[RSSD_VXFacesets.js](./Plugins/RSSD_VXFacesets.js)**|Allows you to adjust facesets' sizes and offsets. Mainly used for using vx-sized facesets in mv.|
-|**[RSSD_VarSwiFindIdByName.js](./Plugins/RSSD_VarSwiFindIdByName.js)**|When getting or setting switches'/variables' values via scripts, you can use switchs' / variables' names instead of ids. It's invalid for corresponding event commands.|
+|**[RSSD_VarSwiFindIdByName.js](./Plugins/RSSD_VarSwiFindIdByName.js)**|When getting or setting switches'/variables' values via scripts, you can use switches' / variables' names instead of ids. It's invalid for corresponding event commands.|
 |**[SimpleSplashScreen.js](./Plugins/SimpleSplashScreen.js)**|The function is similar to MadeWithMV.js. Just a practice.|
 |**[StopScrollTextProcess.js](./Plugins/StopScrollTextProcess.js)**|Holding down key can stop scrolling text. If you are using [RSSD_SimpleScrollableInfoBoard.js](./Plugins/RSSD_SimpleScrollableInfoBoard.js) , place it below this plugin.|
 |**[TMRingCommand_Upgraded.js](./Plugins/TMRingCommand_Upgraded.js)**|I modified tomoaky's [TMRingCommand.js](https://github.com/munokura/tomoaky-MV-plugins/blob/master/TMRingCommand.js), which was released under MIT license, to make it meet my needs. In this upgraded plugin, not only can you use switches to control when to hide / show commands respectively, but up to 10 common events can also be added to the ring menu as commands. Besides you are now able to customize the object (player/screen) which the ring menu is bound to. More settings are added to the param list as well. |
