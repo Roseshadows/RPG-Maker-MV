@@ -23,7 +23,7 @@ This repository contains all the plugins I made for RPG Maker MV, an engine for 
 |**[SimpleSplashScreen.js](./Plugins/SimpleSplashScreen.js)**|功能和 MadeWithMV.js 相似。是练手作。|
 |**[StopScrollTextProcess.js](./Plugins/StopScrollTextProcess.js)**|按住向下键时可以停止滚动文本。如果你在使用 [RSSD_SimpleScrollableInfoBoard.js](./Plugins/RSSD_SimpleScrollableInfoBoard.js) ，则将该插件放到靠上的位置。|
 |**[TMRingCommand_Upgraded.js](./Plugins/TMRingCommand_Upgraded.js)**|在tomoaky的 [TMRingCommand.js](https://github.com/munokura/tomoaky-MV-plugins/blob/master/TMRingCommand.js) 插件的基础上修改的新一版的插件。原来的插件具有局限性，指令是固定的。但在修改版的插件中，可以用开关来控制各个指令的显示与隐藏；可以添加最多十个公共事件到轮盘中；轮盘不仅仅只能绑定到玩家身上，还可以绑定在屏幕上；在外观设置这一栏里添加了一些更细节的设置，等等。|
-|**[TMXpCharacter_Patch.js](./Plugins/TMXpCharacter_Patch.js)**|[TMXpCharacter.js](https://github.com/munokura/tomoaky-MV-plugins/blob/master/TMXpCharacter.js) 的补丁插件。|
+|**[TMXpCharacter_Patch.js](./Plugins/TMXpCharacter_Patch.js)**|[TMXpCharacter.js](https://github.com/munokura/tomoaky-MV-plugins/blob/master/TMXpCharacter.js) 的补丁插件。修复了以下问题：1. XP行走图初始帧显示了错误的图像；2. 在窗口中不正确绘制了XP行走图。|
 |**[UditaUI.js](./Plugins/UditaUI.js)**|允许你在 RMMV 中使用 Wolf RPG Editor 格式的窗口皮肤、对话暂停光标和选择光标。对于示例图，去看 [img/UditaUI](./Plugins/img/UditaUI/) 。|
 ### :notebook:代码列表：
 |代码名|代码功能|
@@ -54,7 +54,7 @@ Note that currently most of these plugins are in Chinese.
 |**[SimpleSplashScreen.js](./Plugins/SimpleSplashScreen.js)**|The function is similar to MadeWithMV.js. Just a practice.|
 |**[StopScrollTextProcess.js](./Plugins/StopScrollTextProcess.js)**|Holding down key can stop scrolling text. If you are using [RSSD_SimpleScrollableInfoBoard.js](./Plugins/RSSD_SimpleScrollableInfoBoard.js) , place it below this plugin.|
 |**[TMRingCommand_Upgraded.js](./Plugins/TMRingCommand_Upgraded.js)**|I modified tomoaky's [TMRingCommand.js](https://github.com/munokura/tomoaky-MV-plugins/blob/master/TMRingCommand.js), which was released under MIT license, to make it meet my needs. In this upgraded plugin, not only can you use switches to control when to hide / show commands respectively, but up to 10 common events can also be added to the ring menu as commands. Besides you are now able to customize the object (player/screen) which the ring menu is bound to. More settings are added to the param list as well. |
-|**[TMXpCharacter_Patch.js](./Plugins/TMXpCharacter_Patch.js)**|A patch for [TMXpCharacter.js](https://github.com/munokura/tomoaky-MV-plugins/blob/master/TMXpCharacter.js). Fix the bug that character index is initially 1 (which should be 0) and other minor bugs.|
+|**[TMXpCharacter_Patch.js](./Plugins/TMXpCharacter_Patch.js)**|A patch for [TMXpCharacter.js](https://github.com/munokura/tomoaky-MV-plugins/blob/master/TMXpCharacter.js). Fix the bug that character pattern is initially 1 (which should be 0) and other minor bugs.|
 |**[UditaUI.js](./Plugins/UditaUI.js)**|Allows you to use Wolf RPG Editor formatted windowskin, pause sign and cursor in RMMV. See [img/UditaUI](./Plugins/img/UditaUI/) for example images.|
 
 ### :notebook:Codes List: (used for tracing codes on their functions)
