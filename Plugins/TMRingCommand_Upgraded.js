@@ -5,7 +5,7 @@
 // Last Update: 2016/04/13 (2022.02.28)
 //=============================================================================
 /*:
- * @plugindesc v1.0.0 - Modified TMRingCommand plugin
+ * @plugindesc v1.0.1 - Modified TMRingCommand plugin
  * @author tomoaky (Modified by Rose_shadows)
  * @help
  * ---------------------------------------------------------------------------
@@ -632,7 +632,7 @@
  * @default 0
  */
 /*:zh
- * @plugindesc v1.0.0 - 命令轮盘插件 修改版
+ * @plugindesc v1.0.1 - 命令轮盘插件 修改版
  * @author tomoaky (由Rose_shadows修改)
  * @help
  * ---------------------------------------------------------------------------
