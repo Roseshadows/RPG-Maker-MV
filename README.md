@@ -3,7 +3,7 @@
 This repository contains all the plugins I made for RPG Maker MV, an engine for game developing.
 <br>
 - [目录](#目录)
-- [Contents](#Contents)
+- [Content](#Content)
 * * *
 # 目录
 ### :notebook:插件列表：
@@ -35,7 +35,7 @@ This repository contains all the plugins I made for RPG Maker MV, an engine for 
 >
 > 不强制署名，但不要声明该插件是除 Rose_shadows | 离影玫 | OrchidBones | 兰骨 以外的人所写的。
 * * *
-# Contents
+# Content
 ### :notebook:Plugin List: (used for tracing plugins on their functions)
 Note that currently most of these plugins are in Chinese.
 |Name|Functions|
