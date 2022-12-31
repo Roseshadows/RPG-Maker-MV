@@ -2,7 +2,7 @@
 // 需要SceneDesktop.js作为前置插件。
 
 /*:
- * @plugindesc 真正创建界面的代码。需要 SceneDesktop.js 提供父类。
+ * @plugindesc SceneDesktop.js的一个实例。需要 SceneDesktop.js 提供父类。
  * @author 离影玫 | Rose_shadows
  * @help 直接在代码中修改吧。
  */
