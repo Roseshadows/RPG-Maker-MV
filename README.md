@@ -62,14 +62,14 @@ Note that currently most of these plugins are in Chinese.
 |:----:|:-----|
 |**ComputerScene.js**|Creates a scene which looks like computer's desktop. This is not a plugin. You need to modify the script yourself following the instructions inside. However, you can test the script as a plugin in a new project without any adjustment. To test it, you can just make a script call: SceneManager.push(Scene_Test); The corresponding plugins have been released! Check the plugins SceneDesktop.js and RSSD_ScenePhone.js above.)|
 ### :notebook:Terms of Use
-- Most of plugins are released under following license:
+- Most of plugins are released under the following license:
 > Free to be used in both commercial and non-commercial projects.
 >
-> You can also modify or redistribute this plugin, as long as you do not claim this plugin belongs to anyone except me, Rose_shadows | 离影玫 | OrchidBones | 兰骨. 
+> You can also modify or redistribute this plugin, as long as you admit that this plugin does not belong to anyone but me, Rose_shadows | 离影玫 | OrchidBones | 兰骨. 
 >
 > Credits are appreciated, but not required.
 
-Other plugins are released under MIT License.
+Other plugins are released under the MIT License.
 For exact Terms of Use, please check the plugin's help file.
 
 <!---
