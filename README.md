@@ -16,7 +16,7 @@ This repository contains all the plugins I made for RPG Maker MV, an engine for 
 |**[SceneDesktop.js](./Plugins/SceneDesktop.js)**|为手机样式菜单提供父类，能够让开发者更便捷地创建手机样式的菜单。|
 |**[ScenePhonesAndComputers.js](./Plugins/ScenePhonesAndComputers.js)**|SceneDesktop.js 的一个使用实例。|
 |**[RSSD_ScenePhone.js](./Plugins/RSSD_ScenePhone.js)**|创造一个智能手机样式的菜单。玩家可以点击APP以进入界面、触发公共事件或运行自定义代码。根据插件的帮助文档，你可以创建多个手机界面。需要[SceneDesktop.js](./Plugins/SceneDesktop.js)作为前置插件。|
-|**[RSSD_SimpleScrollableInfoBoard.js](./Plugins/RSSD_SimpleScrollableInfoBoard.js)**|事件指令【显示滚动文本】的扩展插件。特定开关打开后，滚动文本窗口可作为一个可滚动的信息板。你可以使用鼠标滚轮或上下键来滚动信息。插件还允许你通过设置文本滚动速度来决定信息板背景类型是窗口还是透明。|
+|**[RSSD_SimpleScrollableInfoBoard.js](./Plugins/RSSD_SimpleScrollableInfoBoard.js)**|事件指令【显示滚动文本】的扩展插件。特定开关打开后，滚动文本窗口可用作一个显示长文章的可滚动的信息板。你可以使用鼠标滚轮或上下键来滚动信息，用常规方法关闭信息板。插件还允许你通过设置文本滚动速度来决定信息板背景类型是窗口还是透明。|
 |**[RSSD_SwapTitleBackground.js](./Plugins/RSSD_SwapTitleBackground.js)**|允许你在标题界面中动态切换多个背景图片。|
 |**[RSSD_VXFacesets.js](./Plugins/RSSD_VXFacesets.js)**|允许你调整脸图的大小和在窗口中的偏移位置。|
 |**[RSSD_VarSwiFindIdByName.js](./Plugins/RSSD_VarSwiFindIdByName.js)**|使用脚本获取或控制开关/变量时可以输入开关/变量名称。|
