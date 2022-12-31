@@ -15,15 +15,15 @@ This repository contains all the plugins I made for RPG Maker MV, an engine for 
 |**[RSSD_HideDestinationSprite.js](./Plugins/RSSD_HideDestinationSprite.js)**|用一个开关来控制目的地光标的显示与隐藏。开关打开，光标隐藏。熟悉了一下update的用法。|
 |**[SceneDesktop.js](./Plugins/SceneDesktop.js)**|为手机样式菜单提供父类，能够让开发者更便捷地创建手机样式的菜单。|
 |**[ScenePhonesAndComputers.js](./Plugins/ScenePhonesAndComputers.js)**|SceneDesktop.js 的一个使用实例。|
-|**[RSSD_ScenePhone.js](./Plugins/RSSD_ScenePhone.js)**|创造一个智能手机样式的菜单。玩家可以点击APP以进入界面、触发公共事件或运行自定义代码。根据插件的帮助文档，你可以创建多个手机界面。需要[SceneDesktop.js](./Plugins/SceneDesktop.js)作为前置插件。|
+|**[RSSD_ScenePhone.js](./Plugins/RSSD_ScenePhone.js)**|创造一个智能手机样式的菜单。玩家可以点击APP以进入界面、触发公共事件或运行自定义代码。根据插件的帮助文档，你可以创建多个手机界面。需要 [SceneDesktop.js](./Plugins/SceneDesktop.js) 作为前置插件。|
 |**[RSSD_SimpleScrollableInfoBoard.js](./Plugins/RSSD_SimpleScrollableInfoBoard.js)**|事件指令【显示滚动文本】的扩展插件。特定开关打开后，滚动文本窗口可用作一个显示长文章的可滚动的信息板。你可以使用鼠标滚轮或上下键来滚动信息，用常规方法关闭信息板。插件还允许你通过设置文本滚动速度来决定信息板背景类型是窗口还是透明。|
 |**[RSSD_SwapTitleBackground.js](./Plugins/RSSD_SwapTitleBackground.js)**|允许你在标题界面中动态切换多个背景图片。|
 |**[RSSD_VXFacesets.js](./Plugins/RSSD_VXFacesets.js)**|允许你调整脸图的大小和在窗口中的偏移位置。|
 |**[RSSD_VarSwiFindIdByName.js](./Plugins/RSSD_VarSwiFindIdByName.js)**|使用脚本获取或控制开关/变量时可以输入开关/变量名称。|
 |**[SimpleSplashScreen.js](./Plugins/SimpleSplashScreen.js)**|功能和 MadeWithMV.js 相似。是练手作。|
 |**[StopScrollTextProcess.js](./Plugins/StopScrollTextProcess.js)**|按住向下键时可以停止滚动文本。如果你在使用 [RSSD_SimpleScrollableInfoBoard.js](./Plugins/RSSD_SimpleScrollableInfoBoard.js) ，则将该插件放到靠上的位置。|
-|**[TMRingCommand_Upgraded.js](./Plugins/TMRingCommand_Upgraded.js)**|在tomoaky的TMRingCommand.js插件的基础上修改的新一版的插件。原来的插件具有局限性，指令是固定的。但在修改版的插件中，可以用开关来控制各个指令的显示与隐藏；可以添加最多十个公共事件到轮盘中；轮盘不仅仅只能绑定到玩家身上，还可以绑定在屏幕上；在外观设置这一栏里添加了一些更细节的设置，等等。[原插件链接](https://github.com/munokura/tomoaky-MV-plugins/blob/master/TMRingCommand.js)|
-|**[TMXpCharacter_Patch.js](./Plugins/TMXpCharacter_Patch.js)**|[TMXpCharacter.js](https://github.com/munokura/tomoaky-MV-plugins/blob/master/TMXpCharacter.js)的补丁插件。|
+|**[TMRingCommand_Upgraded.js](./Plugins/TMRingCommand_Upgraded.js)**|在tomoaky的 [TMRingCommand.js](https://github.com/munokura/tomoaky-MV-plugins/blob/master/TMRingCommand.js) 插件的基础上修改的新一版的插件。原来的插件具有局限性，指令是固定的。但在修改版的插件中，可以用开关来控制各个指令的显示与隐藏；可以添加最多十个公共事件到轮盘中；轮盘不仅仅只能绑定到玩家身上，还可以绑定在屏幕上；在外观设置这一栏里添加了一些更细节的设置，等等。|
+|**[TMXpCharacter_Patch.js](./Plugins/TMXpCharacter_Patch.js)**|[TMXpCharacter.js](https://github.com/munokura/tomoaky-MV-plugins/blob/master/TMXpCharacter.js) 的补丁插件。|
 |**[UditaUI.js](./Plugins/UditaUI.js)**|允许你在 RMMV 中使用 Wolf RPG Editor 格式的窗口皮肤、对话暂停光标和选择光标。d对于示例图，去看 [img/UditaUI](./Plugins/img/UditaUI/) 。|
 ### :notebook:代码列表：
 |代码名|代码功能|
