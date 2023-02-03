@@ -14,7 +14,7 @@
  * 在打开特定开关后，可以使用事件指令【显示滚动文本】来显示一个可滚动的
  * 信息板。
  * 在信息板中，可以用滚轮或上下方向键滚动文本。
- * 若要退出信息板，请按Esc键、点击鼠标左键或双击屏幕。
+ * 若要退出信息板，请按Esc键、点击鼠标右键或双击屏幕。
  * 
  * 通过设置文本的滚动速度，可以设定信息板背景样式为窗口或是透明。
  * 若速度为2(默认)，则背景样式为窗口；
@@ -86,8 +86,6 @@ RSSD.SimpleScrollableInfoBoard.width             = parameters['Default Width'] |
 RSSD.SimpleScrollableInfoBoard.height            = parameters['Default Height'] || 500;
 RSSD.SimpleScrollableInfoBoard.varWidth          = parameters['Width Variable ID'] || 19;
 RSSD.SimpleScrollableInfoBoard.varHeight         = parameters['Height Variable ID'] || 20;
-
-console.log(RSSD.SimpleScrollableInfoBoard.distancePerScroll);
 
 Window_ScrollText.prototype.isOpenAndActive = function() {
     return this.isOpen() && this.active;
