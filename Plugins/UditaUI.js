@@ -2,7 +2,7 @@
 // UditaUI.js
 //===============================================================
 /*:
- * @plugindesc ver3.00 - Wolf RPG Editor 格式的 UI
+ * @plugindesc ver3.01 - Wolf RPG Editor 格式的 UI
  * @author 离影玫 | Rose_shadows
  * @help 
  * === 介绍 ===
