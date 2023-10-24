@@ -137,6 +137,7 @@
  *         整理了插件参数列表，新增关于Udita格式对话暂停光标的设置。
  * v2.10 - 新增更换Udita格式UI图片的功能。
  * v3.00 - 添加了对Udita格式选择光标的支持及相关插件参数设置。
+ * v3.01 - 修复“Udita选择光标是否闪烁”参数失效的问题。
  * 
  * @param ===== 窗口皮肤 =====
  * 
@@ -245,7 +246,7 @@ RSSD.UditaUI.uditaPauseSignPosition = +RSSD.UditaUI.parameters['Udita Pause Sign
 RSSD.UditaUI.uditaskin              = ''+RSSD.UditaUI.parameters['Default Udita Windowskin Name'] || 'Window2';
 RSSD.UditaUI.uditaPauseSign         = ''+RSSD.UditaUI.parameters['Default Udita Pause Sign Name'] || 'PauseSign';
 RSSD.UditaUI.uditaCursor            = ''+RSSD.UditaUI.parameters['Default Udita Cursor Name'] || 'CursorBase';
-RSSD.UditaUI.isCursorBlinking       = RSSD.UditaUI.parameters['Enable Udita Cursor Blinking'];
+RSSD.UditaUI.isCursorBlinking       = RSSD.UditaUI.parameters['Enable Udita Cursor Blinking'] === 'true';
 RSSD.UditaUI.uditaPauseSignFrames   = +RSSD.UditaUI.parameters['Udita Pause Sign Frames'] || 6;
 RSSD.UditaUI.uditaPauseSignSpeed    = +RSSD.UditaUI.parameters['Udita Pause Sign Anime Speed'] || 12;
 
@@ -544,7 +545,7 @@ Window.prototype._updateCursorStyle = function() {
 
 var __Window__updateCursor = Window.prototype._updateCursor;
 Window.prototype._updateCursor = function() {
-    if(this._isUditaCursor && !RSSD.isCursorBlinking) {
+    if(this._isUditaCursor && !RSSD.UditaUI.isCursorBlinking) {
         this._windowCursorSprite.alpha = 1;
     } else {
         __Window__updateCursor.call(this);
