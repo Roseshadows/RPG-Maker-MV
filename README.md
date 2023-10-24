@@ -59,8 +59,6 @@ Note that currently most of these plugins are in Chinese.
 |**[UditaUI.js](./Plugins/UditaUI.js)**|Allows you to use Wolf RPG Editor formatted windowskin, pause sign and cursor in RMMV. See [img/UditaUI](./Plugins/img/UditaUI/) for example images.|
 ### :notebook:Terms of Use
 - All the plugins are released under MIT License.
-
-Other plugins are released under the MIT License.
 For exact Terms of Use, please check the plugin's help file.
 
 <!---
