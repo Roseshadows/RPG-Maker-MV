@@ -1202,7 +1202,7 @@ if(Utils.RPGMAKER_NAME === 'MZ') {
     var __Scene_PageableBook_createCancelButton = Scene_PageableBook.prototype.createCancelButton;
     Scene_PageableBook.prototype.createCancelButton = function() {
         __Scene_PageableBook_createCancelButton.call(this);
-        this._cancelButton.setClickHandler(this.popScene.bind(this));
+        this._cancelButton.visible = false;
     };
 }
 

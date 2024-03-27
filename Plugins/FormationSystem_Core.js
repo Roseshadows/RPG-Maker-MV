@@ -2,8 +2,9 @@
 // FormationSystem_Core.js
 //==============================================================================
 /*:
- * @plugindesc 1.0.0 - 战斗阵列系统 - 核心
+ * @plugindesc 1.0.1 - 战斗阵列系统 - 核心
  * @author Rose_shadows
+ * @target MV MZ
  * @help
  * === 介绍 ===
  * 
@@ -107,6 +108,7 @@
  * === 更新日志 ===
  * 
  * 1.0.0 - 完成。
+ * 1.0.1 - 添加了与MZ的兼容性。
  * 
  * @param Max Member
  * @text 前后排槽位数
@@ -690,7 +692,8 @@ Sprite_Actor.prototype.setFormationPosition = function(battler) {
 //==============================================================================
 
 Sprite_Enemy.prototype.firstFormationX = function() {
-    return SceneManager._screenWidth - Sprite_Battler.prototype.firstFormationX.call(this);
+    var screenWidth = Utils.RPGMAKER_NAME === 'MZ' ? Graphics.width : SceneManager._screenWidth;
+    return screenWidth - Sprite_Battler.prototype.firstFormationX.call(this);
 };
 
 var __Sprite_Enemy_setBattler = Sprite_Enemy.prototype.setBattler;
