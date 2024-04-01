@@ -800,7 +800,11 @@ Window_PageableBook_Page.prototype.applyEvalBefore = function() {
 };
 
 Window_PageableBook_Page.prototype.applyContents = function(texts) {
-    this.drawTextEx(texts, 0, 0);
+    if(!$gameSystem.isPageableTextOutlineEnabled()) {
+        this.drawTextEx('\\PBNOOL'+texts, 0, 0);
+    } else {
+        this.drawTextEx(texts, 0, 0);
+    }
 };
 
 Window_PageableBook_Page.prototype.applyEvalAfter = function() {

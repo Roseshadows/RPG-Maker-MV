@@ -2,7 +2,7 @@
 // FormationSystem_Core.js
 //==============================================================================
 /*:
- * @plugindesc 1.0.1 - 战斗阵列系统 - 核心
+ * @plugindesc 1.0.2 - 战斗阵列系统 - 核心
  * @author Rose_shadows
  * @target MV MZ
  * @help
@@ -15,6 +15,9 @@
  * 如果后排不存在符合技能条件的队员，前排队员就会受到仅作用于后排的技能的影响。
  * 同理，如果前排不存在符合技能条件的队员，后排队员就会受到仅作用于前排的技能的
  * 影响。
+ * 
+ * 该插件还改变了技能作用于全体时效果的附加顺序。
+ * 安装插件后，技能效果会按照ID由小到大的阵列槽的顺序附加在战斗者上。
  * 
  * 开始游戏时，开场的队员会按顺序放入阵列槽内。
  * 在每次战斗中，敌人会按照设置随机出现在前排或后排的位置。
@@ -61,6 +64,10 @@
  * # 以下出现的 member 都是 $gameActors.actor(actorId) 
  *   或 $gameParty.member(memberId) 对象。
  * 
+ * $gameParty.formationMember(slotId);
+ * - 获取指定ID的阵列槽上的角色对象。如果为空阵列槽，则返回 null 。
+ *   slotId: 阵列槽ID。
+ * 
  * $gameParty.addMemberToSlot(member, slotId);
  * - 将角色/队员添加到指定阵列槽。如果阵列槽已有队员，则无法添加。
  *   slotId: 阵列槽ID。
@@ -76,6 +83,9 @@
  * $gameParty.swapMembersBetweenSlots(slotId1, slotId2);
  * - 交换位于两个阵列槽的角色/队员。对于空槽位也有效果。
  *   slotId1, slotId2: 阵列槽ID。
+ * 
+ * $gameParty.vanguardRearguardMaxMembers();
+ * - 前后排的槽位数。和插件参数一致。
  * 
  * member.formationSlotIndex()
  * - 获取角色所在的阵列槽ID。如果没有在阵列里，则返回 -1 。
@@ -109,6 +119,7 @@
  * 
  * 1.0.0 - 完成。
  * 1.0.1 - 添加了与MZ的兼容性。
+ * 1.0.2 - 新增函数，更新帮助文档。
  * 
  * @param Max Member
  * @text 前后排槽位数
@@ -291,6 +302,10 @@ Game_Unit.prototype.refreshFormationSlots = function() {
     for(var i = 0; i < num; i++) {
         this._formationSlots.push(null);
     }
+};
+
+Game_Unit.prototype.formationMember = function(slotIndex) {
+    return this._formationSlots[slotIndex] || null;
 };
 
 Game_Unit.prototype.setMemberAtSlot = function(member, slotIndex) {
