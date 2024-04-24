@@ -235,7 +235,7 @@ Game_Enemy.prototype.isSetRearguard = function() {
     return this.enemy().meta['Rearguard'] !== undefined;
 };
 
-Game_Battler.prototype.rearguardOffsetX = function() {
+Game_Enemy.prototype.rearguardOffsetX = function() {
     return RSSD.FS_C.rearguardEnemyX;
 };
 
