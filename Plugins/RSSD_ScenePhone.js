@@ -2,7 +2,7 @@
 //  RSSD_ScenePhone.js
 // ========================================================
 /*:
- * @plugindesc ver2.00 - 创建一个手机菜单。可以通过点击APP来触发其他菜单、运行公共事件或运行代码。
+ * @plugindesc ver2.01 - 创建一个手机菜单。可以通过点击APP来触发其他菜单、运行公共事件或运行代码。
  * @author 离影玫 || Rose_shadows
  * @help
  * === 介绍 ===
@@ -72,6 +72,7 @@
  * ver1.00 - 完成。
  * ver2.00 - 现在可以创造多个手机界面了。
  *           详情去看帮助文档的【小贴士】部分。
+ * ver2.01 - 修复公共事件无法正常调用的问题。
  * 
  * @param Menu
  * @text === 菜单设置 ===
@@ -370,20 +371,6 @@ var obj = {};
         $.back.x         = isNaN(Number($.parameters['背景X坐标'])) ? String($.parameters['背景X坐标']) : Number($.parameters['背景X坐标']);
         $.back.y         = isNaN(Number($.parameters['背景Y坐标'])) ? String($.parameters['背景Y坐标']) : Number($.parameters['背景Y坐标']);
 
-        /**获取遮罩参数 */
-        /*
-        $.mask = {};
-        $.mask.bitmap    = $.parameters['遮罩图片'];
-        $.mask.opacity   = $.parameters['遮罩不透明度'] || 255;
-        $.mask.rotation  = $.parameters['遮罩旋转弧度'] || 0;
-        $.mask.blendMode = $.parameters['遮罩混合模式'] || 0;
-        $.mask.scaleX    = parseFloat($.parameters['遮罩横向缩放']) || 1;
-        $.mask.scaleY    = parseFloat($.parameters['遮罩纵向缩放']) || 1;
-        $.mask.swi       = Number($.parameters['控制遮罩显隐的开关']) || 0;
-        $.mask.x         = isNaN($.parameters['遮罩X坐标']) ? String($.parameters['遮罩X坐标']) : Number($.parameters['遮罩X坐标']) || 0;
-        $.mask.y         = isNaN($.parameters['遮罩Y坐标']) ? String($.parameters['遮罩Y坐标']) : Number($.parameters['遮罩Y坐标']) || 0;
-        */
-
         /**获取APP参数 */
 
         var params_apps = [];
@@ -566,11 +553,11 @@ var obj = {};
                         if($.app[id].callCommonMode) {
                             // 等待玩家自行退出
                             this._phoneWindow.activate();
-                            $gameSystem.reserveCommonEvent($.app[id].commonEvent);
+                            $gameTemp.reserveCommonEvent($.app[id].commonEvent);
                         } else {
                             // 立即退出并执行
                             SceneManager.goto(Scene_Map);
-                            $gameSystem.reserveCommonEvent($.app[id].commonEvent);
+                            $gameTemp.reserveCommonEvent($.app[id].commonEvent);
                         }
                     }
                     break;
@@ -603,62 +590,6 @@ var obj = {};
                 this.addExtendedSprite('img/phones/',$.back.bitmap, eval(''+$.back.x), eval(''+$.back.y), eval(''+$.back.opacity), visible, eval(''+$.back.rotation), $.back.blendMode, eval(''+$.back.scaleX), eval(''+$.back.scaleY))
             };
         };
-
-
-        /**创建遮罩 */
-
-        /*
-        var _SceneManager_initialize = SceneManager.initialize;
-        SceneManager.initialize = function() {
-            _SceneManager_initialize.call(this);
-            this._phoneMasks = this._phoneMasks || {};
-            this.initPhoneMask();
-        };
-
-        SceneManager.initPhoneMask = function() {
-            var phoneMask = new Sprite();
-            if($.mask.bitmap){
-                phoneMask.bitmap   = ImageManager.loadBitmap('img/phones/',$.mask.bitmap,0,true);
-                phoneMask.x        = eval(''+$.mask.x);
-                phoneMask.y        = eval(''+$.mask.y);
-                phoneMask.opacity  = eval(''+$.mask.opacity);
-                phoneMask.rotation = eval(''+$.mask.rotation);
-                phoneMask.scale.x  = eval(''+$.mask.scaleX);
-                phoneMask.scale.y  = eval(''+$.mask.scaleY);
-                phoneMask.anchor.x = 0.5;
-                phoneMask.anchor.y = 0.5;
-                phoneMask.visible  = $.mask.swi ? $gameSwitches.value($.mask.swi) : true;
-            }
-            this._phoneMasks[$.pluginName] = phoneMask;
-        };
-
-        var _SceneManager_onSceneStart = SceneManager.onSceneStart;
-        SceneManager.onSceneStart = function() {
-            _SceneManager_onSceneStart.call(this);
-            this.refreshPhoneMaskZ();
-        };
-
-        if(JSON.stringify(RSSD.ScenePhone) === '{}' && SceneManager.refreshPhoneMaskZ == undefined) {
-            SceneManager.refreshPhoneMaskZ = function() {
-                if (this._scene instanceof window[$.sceneName]) {
-                    this._scene.addChild(this._phoneMasks[$.pluginName]);
-                }
-            };
-        };
-
-        var _SceneManager_snapForBackground = SceneManager.snapForBackground;
-        SceneManager.snapForBackground = function() {
-            this._phoneMasks[$.pluginName].visible = false;
-            _SceneManager_snapForBackground.call(this);
-            this._phoneMasks[$.pluginName].visible = true;
-        };
-
-        var _Scene_Base_createFadeSprite = Scene_Base.prototype.createFadeSprite;
-        Scene_Base.prototype.createFadeSprite = function(white) {
-            _Scene_Base_createFadeSprite.call(this, white);
-            SceneManager.refreshPhoneMaskZ();
-        };
-        */
 
     } else {
         alert($.pluginName+'.js 需要 SceneDesktop.js 插件。看看是不是忘记安装或者插件顺序不对！')
