@@ -18,6 +18,7 @@ This repository contains all the plugins I made for RPG Maker MV.
 |**[RSSD_MessageWindowSound.js](./Plugins/RSSD_MessageWindowSound.js)**|切换对话时播放一次指定的音效。也可用于MZ。|
 |**[SceneDesktop.js](./Plugins/SceneDesktop.js)**|为手机样式菜单提供父类，能够让开发者更便捷地创建手机样式的菜单。|
 |**[RSSD_ScenePhone.js](./Plugins/RSSD_ScenePhone.js)**|创造一个智能手机样式的菜单。玩家可以点击APP以进入界面、触发公共事件或运行自定义代码。根据插件的帮助文档，你可以创建多个手机界面。需要 [SceneDesktop.js](./Plugins/SceneDesktop.js) 作为前置插件。|
+|**[RSSD_MobilePhone.js](./Plugins/RSSD_MobilePhone.js)**|上一个插件的另一版。在上一个插件的基础上添加了新的功能（手机遮罩），但只能设置一部手机。没有前置插件。|
 |**[RSSD_SimplePageableBook.js](./Plugins/RSSD_SimplePageableBook.js)**|创建一个可翻页的书籍界面。也可用于RMMZ。不仅可以提供了纯文本和代码两种方式书写内容，设置翻页音效，也能从多方面控制书籍的样式。安装 SRD_SwiptInput.js 作为前置插件后，还可以用鼠标/手指滑动翻页。|
 |**[RSSD_SimpleScrollableInfoBoard.js](./Plugins/RSSD_SimpleScrollableInfoBoard.js)**|事件指令【显示滚动文本】的扩展插件。也可以用于RMMZ。特定开关打开后，滚动文本窗口可用作一个显示长文章的可滚动的信息板。你可以使用鼠标滚轮或上下键来滚动信息，用常规方法关闭信息板。插件还允许你通过设置文本滚动速度来决定信息板背景类型是窗口还是透明。|
 |**[RSSD_SSIB_Addon_TouchScroll.js](./Plugins/RSSD_SSIB_Addon_TouchScroll.js)**|[RSSD_SimpleScrollableInfoBoard.js](./Plugins/RSSD_SimpleScrollableInfoBoard.js) 的扩展插件。也可以用于RMMZ。安装后，长信息板可以通过手指或鼠标滑动来滚动。|
