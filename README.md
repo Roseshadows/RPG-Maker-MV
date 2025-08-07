@@ -1,6 +1,3 @@
-我的所有用于 RPG Maker MV 和 MZ 的插件。
-<br>
-* * *
 # 目录
 ### :notebook:插件列表：
 #### MV & MZ
