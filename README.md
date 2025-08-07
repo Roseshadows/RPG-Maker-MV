@@ -8,7 +8,7 @@
 |**[RSSD_HiddenParams.js](./MVZ/RSSD_HiddenParams.js)**|<玩法> 通过标签为角色/敌人自定义额外的隐藏属性。属性可绑定在角色、敌人、职业、武器、防具、物品、技能、状态共8种数据库类型，MV工程通过YEP_StatusMenuCore.js还可以将隐藏属性显示出来。|
 |**[RSSD_HP_Addon_ParamGrowth.js](./MVZ/RSSD_HP_Addon_ParamGrowth.js)**|<玩法> [RSSD_HiddenParams.js](./MVZ/RSSD_HiddenParams.js) 的扩展插件。允许开发者设置成长类型，将隐藏属性设为可成长的属性。|
 |**[RSSD_MessageWindowSound.js](./MVZ/RSSD_MessageWindowSound.js)**|<对话> 切换对话时播放一次指定的音效。|
-|**[RSSD_SimplePageableBook.js](./MVZ/RSSD_SimplePageableBook.js)**|<玩法> 创建一个可翻页的书籍界面。不仅可以提供了纯文本和代码两种方式书写内容，设置翻页音效，也能从多方面控制书籍的样式。[安装 SRD_SwiptInput.js](http://sumrndm.site/swipe-input/) 作为前置插件后，还可以用鼠标/手指滑动翻页。|
+|**[RSSD_SimplePageableBook.js](./MVZ/RSSD_SimplePageableBook.js)**|<玩法> 创建一个可翻页的书籍界面。不仅可以提供了纯文本和代码两种方式书写内容，设置翻页音效，也能从多方面控制书籍的样式。安装 [SRD_SwiptInput.js](http://sumrndm.site/swipe-input/) 作为前置插件后，还可以用鼠标/手指滑动翻页。|
 |**[RSSD_SimpleScrollableInfoBoard.js](./MVZ/RSSD_SimpleScrollableInfoBoard.js)**|<玩法> 事件指令【显示滚动文本】的扩展插件。特定开关打开后，滚动文本窗口可用作一个显示长文章的可滚动的信息板。你可以使用鼠标滚轮或上下键来滚动信息，用常规方法关闭信息板。插件还允许你通过设置文本滚动速度来决定信息板背景类型是窗口还是透明。|
 |**[RSSD_SSIB_Addon_TouchScroll.js](./MVZ/RSSD_SSIB_Addon_TouchScroll.js)**|<玩法> [RSSD_SimpleScrollableInfoBoard.js](./MVZ/RSSD_SimpleScrollableInfoBoard.js) 的扩展插件。安装后，长信息板可以通过手指或鼠标滑动来滚动。|
 |**[RSSD_SwapTitleBackground.js](./MVZ/RSSD_SwapTitleBackground.js)**|<界面> 允许你在标题界面中动态切换多个背景图片。|
